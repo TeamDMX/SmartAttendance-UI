@@ -24,3 +24,10 @@
 color: azure;
 
 }
+
+.customtab
+{
+    margin-left: 0.5px;
+    margin-right: 0.5px;
+    border-radius: 0px;
+}
