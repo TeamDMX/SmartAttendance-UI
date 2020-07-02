@@ -1,15 +1,100 @@
+hr{
+    color: #EDAC28 ;
+    background-color: #EDAC28 ;
+}
+
+.darkbg
+{
+    background-color: #2D3038;
+}
+
+.activebg{
+    background-color: #3E3E48;
+}
+
 .customnav{  
     border: 1px none;
     padding: 10px;
-    box-shadow: 1px 1px 5px 1px #888888;
-    background-color: #0275d8;
+    box-shadow: 1px 1px 5px 1px #3E3D48;
+    background-color: #E5B02E;
 }
+.header
+{
+    font-size: 1.5em;
+     margin-top: 1%; 
+     margin-bottom: 3%;
+}
+
+.jumbotronpadding{
+    padding-bottom: 80px;
+}
+
+.updatestatus{
+    font-size: 0.7em;
+     margin-top: -3%;
+}
+.rowpadding{
+    margin-top: 60px;
+}
+.bgyellow1
+{
+    background-color: #E5B02E;
+}
+.containerpadding
+{
+    padding-top: 20px;
+}
+
+.statcard{
+    font-weight: 400;
+}
+.statcardbg
+{
+    width:100%;  
+    background-color: #EDAC28;
+}
+
+input[type=text]
+{
+    background-color: #2F3038;
+    color: white;
+    border-color: #3E3D48;
+}
+input[type=text]:focus
+{
+    background-color: #2F3038;
+    color:white;
+    border-color: #3E3D48;
+    border:solid #DEB432 1px;
+    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
+}
+.custombtn{
+    height: 30px;
+    font-size: 0.8em;
+    margin: 2px;
+}
+
+.tablehead{
+    background-color: #E5B02E; 
+    border-radius: 10px;
+}
+
+.customtable{
+    width: 100%; 
+    background-color:#2E3038;
+     border-radius:10px; 
+     color: white;
+} .selectdark{
+    background-color: #2F3038; 
+    border:0px;color: white;
+}
+
 
 .shadowonly
 {
     border: 0px none;
     padding: 10px;
-    box-shadow: 1px 1px 20px 1px #888888;
+    box-shadow: 1px 1px 20px 1px #2F3038;
     
 }
 
@@ -30,4 +115,27 @@ color: azure;
     margin-left: 0.5px;
     margin-right: 0.5px;
     border-radius: 0px;
+    background-color: #EFB342;
+    border: 0px;
+}
+.customtab:active
+{
+    margin-left: 0.5px;
+    margin-right: 0.5px;
+    border-radius: 0px;
+    background-color: #D6983A;
+    color: #D6983A;
+    border: 0px;
+}
+
+.dashcardbg{
+    background-color: #3E3D48;
+}
+
+.marginbtn{
+    margin-bottom: 10px;
+}
+
+.dashcardmargin{
+    margin-bottom: 10px;
 }

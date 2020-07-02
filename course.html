@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
 
-    <title>Manage Students </title>
+    <title>Manage Courses </title>
    
   </head>
   <body class="darkbg">
@@ -41,14 +41,14 @@
 
       <div class="container containerpadding" >
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        Student data was edited successfully
+        Course data was edited successfully
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Student deleted!
+          Course deleted!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -63,8 +63,8 @@
                   <div class="card statcardbg" >
                  
                     <div class="card-body">
-                      <h5 class="display-4 textWhite statcard" >320</h5>
-                      <p class="card-text textWhite">Registered Students</p>
+                      <h5 class="display-4 textWhite statcard" >50</h5>
+                      <p class="card-text textWhite">Courses</p>
                       <p class="card-text textWhite updatestatus" >Update 8 mins ago.</p>
                     </div>
               
@@ -75,10 +75,11 @@
                   <div class="card statcardbg"  >
                  
                     <div class="card-body">
-                      <h5 class="display-4 textWhite statcard" >320</h5>
-                      <p class="card-text textWhite">Registered Students</p>
+                      <h5 class="display-4 textWhite statcard" >50</h5>
+                      <p class="card-text textWhite">Courses</p>
                       <p class="card-text textWhite updatestatus" >Update 8 mins ago.</p>
                     </div>
+              
               
                   </div>
                   <br>
@@ -90,90 +91,66 @@
              
               <div class="jumbotron  paddingJump activebg jumbotronpadding" >
                 <ul class="nav nav-tabs" >
-                  <li class="active "><a data-toggle="tab" class="btn btn-info customtab" href="#stdlist">Students</a></li>
-                  <li><a data-toggle="tab" href="#editstd" class="btn btn-info customtab">Edit Student</a></li>
+                  <li class="active "><a data-toggle="tab" class="btn btn-info customtab" href="#clist">Courses</a></li>
+                  <li><a data-toggle="tab" href="#editc" class="btn btn-info customtab">Edit Course</a></li>
                  
                 </ul>
                 <div class="tab-content">
-                  <div id="stdlist" class="tab-pane fade in active">
-                <h6 class="display-4 textWhite header" > All Students</h6>
+                  <div id="clist" class="tab-pane fade in active">
+                <h6 class="display-4 textWhite header" > All Courses</h6>
                 
                 <table class="table table-dark table-borderless customtable" >
                     <thead class="tablehead">
                       <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Index</th>
-                        <th scope="col">Reg.No</th>
-                        <th scope="col">Another Column</th>
-                        <th scope="col ">Actions</th>
+                        <th scope="col">Course ID</th>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Lecturer</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>HR Madhawa</td>
-                        <td>ICT18XXX</td>
-                        <td>TE2565654</td>
+                        <th scope="row">ITC1561</th>
+                        <td>Web App</td>
+                        <td>Dr. Madhawa</td>
                         <td>Lorem Ipsum</td>
+                      
+                        
                         <td ><button class="btn btn-danger custombtn">  <i class="fa fa-trash-o"></i> </button> 
                           <button class="btn btn-success custombtn"><i class="fa fa-pencil-square-o"></i></button></td>
                    
                       </tr>
 
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>HR Madhawa</td>
-                        <td>ICT18XXX</td>
-                        <td>TE2565654</td>
-                        <td>Lorem Ipsum</td>
-                        <td ><button class="btn btn-danger custombtn">  <i class="fa fa-trash-o"></i> </button> 
-                          <button class="btn btn-success custombtn"><i class="fa fa-pencil-square-o"></i></button></td>
                    
-                      </tr>
 
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>HR Madhawa</td>
-                        <td>ICT18XXX</td>
-                        <td>TE2565654</td>
-                        <td>Lorem Ipsum</td>
-                        <td ><button class="btn btn-danger custombtn">  <i class="fa fa-trash-o"></i> </button> 
-                          <button class="btn btn-success custombtn"><i class="fa fa-pencil-square-o"></i></button></td>
-                   
-                      </tr>
-
+                     
                     
                    
                     </tbody>
                   </table>
                 </div>
 
-                <div id="editstd" class="tab-pane fade in active">
-                  <h6 class="display-4 textWhite header" >Edit Student</h6>
+                <div id="editc" class="tab-pane fade in active">
+                  <h6 class="display-4 textWhite header" >Course ID</h6>
                 
                   <form>
   
                     <div class="form-group">
-                      <label  class="textWhite">Name with Intials</label>
+                      <label  class="textWhite">Course Name</label>
                       <input type="text" class="form-control" id="" >
                     </div>
   
                     <div class="form-group">
-                      <label  class="textWhite">Index Number</label>
+                      <label  class="textWhite">Lecturer</label>
                       <input type="text" class="form-control" id="" >
                     </div>
                     <div class="form-group">
-                      <label  class="textWhite">Registration Number</label>
+                      <label  class="textWhite">Description</label>
                       <input type="text" class="form-control" id="" >
                     </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1" class="textWhite">Select Degree</label>
-                        <select class="form-control selectdark" id="exampleFormControlSelect1" >
-                          <option>Degree</option>
-                        
-                         </select>
-                       </div>
+                 
                         <div class="text-right">
                           <button type="button" class="btn col-md-3  bgyellow1" ><i class="fa fa-check"> </i>&nbsp; Save</button>
                         </div>
