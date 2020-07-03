@@ -8,13 +8,14 @@
    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/custom.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
 
     <title>Enroll Student </title>
-    <style>
-        body{background-image: url(https://miro.medium.com/max/3200/0*li3Xi9x6pYTCZYE2); background-repeat: no-repeat;}
-    </style>
+    
   </head>
-  <body>
+  <body class="darkbg">
       <!--Navbar starts here-->
 
       <nav class="navbar navbar-expand-lg navbar-dark customnav">
@@ -46,7 +47,7 @@
          
             <div class="col-sm">
              
-              <div class="jumbotron shadowonly paddingJump" style="background-color: #01498c;padding-bottom: 80px;">
+              <div class="jumbotron paddingJump activebg jumbotronpadding" >
                 <h6 class="display-4 textWhite" style="font-size: 1.5em;"> Enroll Student to Course</h6>
                 <hr style="color: white; background-color: white;">
                 <form>
@@ -65,15 +66,16 @@
                  
                     <div class="form-group">
                       <label for="exampleInputEmail1" class="textWhite">Select Course</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
+                      <select class="form-control selectdark" id="exampleFormControlSelect1">
                         <option>Course</option>
                         <option>Course</option>
                         <option>Course</option>
                         <option>Course</option>
                        </select>
                      </div>
-                   
-                   <button type="button" class="btn btn-primary col-md-3 float-right">Enroll</button>
+                     <div class="text-right ">
+                      <button type="button" class="btn col-md-3  bgyellow1 btnmargin-top" ><i class="fa fa-check"> </i>&nbsp; Enroll Student</button>
+                    </div> 
                   </form>
 
               </div>

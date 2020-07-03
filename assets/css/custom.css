@@ -83,6 +83,21 @@ input[type=text]:focus
     border:solid #DEB432 1px;
     box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
 }
+
+input[type=password]
+{
+    background-color: #2F3038;
+    color: white;
+    border-color: #3E3D48;
+}
+input[type=password]:focus
+{
+    background-color: #2F3038;
+    color:white;
+    border-color: #3E3D48;
+    border:solid #DEB432 1px;
+    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
+}
 .custombtn{
     height: 30px;
     font-size: 0.8em;
@@ -153,4 +168,11 @@ color: azure;
 
 .dashcardmargin{
     margin-bottom: 10px;
+}
+
+.logo{
+    width: 5%;
+}
+.marktext{
+    font-size: 0.7em;
 }
