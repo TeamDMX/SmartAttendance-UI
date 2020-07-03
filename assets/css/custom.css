@@ -31,10 +31,25 @@ hr{
 
 .updatestatus{
     font-size: 0.7em;
-     margin-top: -3%;
+     margin-top: 0.1%;
+}
+.textareabg{
+    background-color: #2D3038;
+    border: 0px;
+}
+
+.textareabg:focus{
+    background-color: #2F3038;
+    color:white;
+    border-color: #3E3D48;
+    border:solid #DEB432 1px;
+    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
 }
 .rowpadding{
     margin-top: 60px;
+}
+.btnmargin-top{
+    margin-top: 20px;
 }
 .bgyellow1
 {
