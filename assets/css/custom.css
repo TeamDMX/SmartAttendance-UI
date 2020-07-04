@@ -66,7 +66,9 @@ hr{
 .statcardbg
 {
     width:100%;  
-    background-color: #EDAC28;
+    background-image:linear-gradient(to left,#DEB432,  #E5B02E);
+};
+    
 }
 
 input[type=text]
