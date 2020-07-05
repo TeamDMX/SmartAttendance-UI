@@ -67,7 +67,7 @@ hr{
 {
     width:100%;  
     background-image:linear-gradient(to left,#DEB432,  #E5B02E);
-};
+
     
 }
 
@@ -177,4 +177,11 @@ color: azure;
 }
 .marktext{
     font-size: 0.7em;
+}
+.font1-5{
+    font-size: 1.5em;
+}
+
+.margintop50{
+    margin-top: 50px;
 }
