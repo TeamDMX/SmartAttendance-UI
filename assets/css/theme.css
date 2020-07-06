@@ -185,3 +185,7 @@ color: azure;
 .margintop50{
     margin-top: 50px;
 }
+
+.btnwidth{
+    width: 100%;
+}
