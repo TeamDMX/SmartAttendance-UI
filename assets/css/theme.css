@@ -1,191 +1,180 @@
-hr{
-    color: #EDAC28 ;
-    background-color: #EDAC28 ;
+hr {
+  color: #edac28;
+  background-color: #edac28;
 }
 
-.darkbg
-{
-    background-color: #2D3038;
+.darkbg {
+  background-color: #2d3038;
 }
 
-.activebg{
-    background-color: #3E3E48;
+.activebg {
+  background-color: #3e3e48;
 }
 
-.customnav{  
-    border: 1px none;
-    padding: 10px;
-    box-shadow: 1px 1px 5px 1px #3E3D48;
-    background-color: #E5B02E;
+.customnav {
+  border: 1px none;
+  padding: 10px;
+  box-shadow: 1px 1px 5px 1px #3e3d48;
+  background-color: #e5b02e;
 }
-.header
-{
-    font-size: 1.5em;
-     margin-top: 1%; 
-     margin-bottom: 3%;
-}
-
-.jumbotronpadding{
-    padding-bottom: 80px;
+.header {
+  font-size: 1.5em;
+  margin-top: 1%;
+  margin-bottom: 3%;
 }
 
-.updatestatus{
-    font-size: 0.7em;
-     margin-top: 0.1%;
-}
-.textareabg{
-    background-color: #2D3038;
-    border: 0px;
+.jumbotronpadding {
+  padding-bottom: 80px;
 }
 
-.textareabg:focus{
-    background-color: #2F3038;
-    color:white;
-    border-color: #3E3D48;
-    border:solid #DEB432 1px;
-    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
+.updatestatus {
+  font-size: 0.7em;
+  margin-top: 0.1%;
 }
-.rowpadding{
-    margin-top: 60px;
-}
-.btnmargin-top{
-    margin-top: 20px;
-}
-.bgyellow1
-{
-    background-color: #E5B02E;
-}
-.containerpadding
-{
-    padding-top: 20px;
+.textareabg {
+  background-color: #2d3038;
+  border: 0px;
 }
 
-.statcard{
-    font-weight: 400;
+.textareabg:focus {
+  background-color: #2f3038;
+  color: white;
+  border-color: #3e3d48;
+  border: solid #deb432 1px;
+  box-shadow: 0.5px 0.5px 5px 0.5px #deb432;
 }
-.statcardbg
-{
-    width:100%;  
-    background-image:linear-gradient(to left,#DEB432,  #E5B02E);
-
-    
+.rowpadding {
+  margin-top: 60px;
 }
-
-input[type=text]
-{
-    background-color: #2F3038;
-    color: white;
-    border-color: #3E3D48;
+.btnmargin-top {
+  margin-top: 20px;
 }
-input[type=text]:focus
-{
-    background-color: #2F3038;
-    color:white;
-    border-color: #3E3D48;
-    border:solid #DEB432 1px;
-    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
+.bgyellow1 {
+  background-color: #e5b02e;
+}
+.containerpadding {
+  padding-top: 20px;
 }
 
-input[type=password]
-{
-    background-color: #2F3038;
-    color: white;
-    border-color: #3E3D48;
+.statcard {
+  font-weight: 400;
 }
-input[type=password]:focus
-{
-    background-color: #2F3038;
-    color:white;
-    border-color: #3E3D48;
-    border:solid #DEB432 1px;
-    box-shadow: 0.5px 0.5px 5px 0.5px #DEB432;
-}
-.custombtn{
-    height: 30px;
-    font-size: 0.8em;
-    margin: 2px;
+.statcardbg {
+  width: 100%;
+  background-image: linear-gradient(to left, #deb432, #e5b02e);
 }
 
-.tablehead{
-    background-color: #E5B02E; 
-    border-radius: 10px;
+input[type="text"] {
+  background-color: #2f3038;
+  color: white;
+  border-color: #3e3d48;
+}
+input[type="text"]:focus {
+  background-color: #2f3038;
+  color: white;
+  border-color: #3e3d48;
+  border: solid #deb432 1px;
+  box-shadow: 0.5px 0.5px 5px 0.5px #deb432;
 }
 
-.customtable{
-    width: 100%; 
-    background-color:#2E3038;
-     border-radius:10px; 
-     color: white;
-} .selectdark{
-    background-color: #2F3038; 
-    border:0px;color: white;
+input[type="password"] {
+  background-color: #2f3038;
+  color: white;
+  border-color: #3e3d48;
+}
+input[type="password"]:focus {
+  background-color: #2f3038;
+  color: white;
+  border-color: #3e3d48;
+  border: solid #deb432 1px;
+  box-shadow: 0.5px 0.5px 5px 0.5px #deb432;
+}
+.custombtn {
+  height: 30px;
+  font-size: 0.8em;
+  margin: 2px;
 }
 
-
-.shadowonly
-{
-    border: 0px none;
-    padding: 10px;
-    box-shadow: 1px 1px 20px 1px #2F3038;
-    
+.tablehead {
+  background-color: #e5b02e;
+  border-radius: 10px;
 }
 
-.paddingJump
-{
-    padding: 30px;
-
+.customtable {
+  width: 100%;
+  background-color: #2e3038;
+  border-radius: 10px;
+  color: white;
+}
+.selectdark {
+  background-color: #2f3038;
+  border: 0px;
+  color: white;
 }
 
-.textWhite
-{
-color: azure;
-
+.shadowonly {
+  border: 0px none;
+  padding: 10px;
+  box-shadow: 1px 1px 20px 1px #2f3038;
 }
 
-.customtab
-{
-    margin-left: 0.5px;
-    margin-right: 0.5px;
-    border-radius: 0px;
-    background-color: #EFB342;
-    border: 0px;
-}
-.customtab:active
-{
-    margin-left: 0.5px;
-    margin-right: 0.5px;
-    border-radius: 0px;
-    background-color: #D6983A;
-    color: #D6983A;
-    border: 0px;
+.paddingJump {
+  padding: 30px;
 }
 
-.dashcardbg{
-    background-color: #3E3D48;
+.textWhite {
+  color: azure;
 }
 
-.marginbtn{
-    margin-bottom: 10px;
+.customtab {
+  margin-left: 0.5px;
+  margin-right: 0.5px;
+  border-radius: 0px;
+  background-color: #efb342;
+  border: 0px;
+}
+.customtab:active {
+  margin-left: 0.5px;
+  margin-right: 0.5px;
+  border-radius: 0px;
+  background-color: #d6983a;
+  color: #d6983a;
+  border: 0px;
 }
 
-.dashcardmargin{
-    margin-bottom: 10px;
+.dashcardbg {
+  background-color: #3e3d48;
 }
 
-.logo{
-    width: 5%;
-}
-.marktext{
-    font-size: 0.7em;
-}
-.font1-5{
-    font-size: 1.5em;
+.marginbtn {
+  margin-bottom: 10px;
 }
 
-.margintop50{
-    margin-top: 50px;
+.dashcardmargin {
+  margin-bottom: 10px;
 }
 
-.btnwidth{
-    width: 100%;
+.logo {
+  width: 5%;
+}
+.marktext {
+  font-size: 0.7em;
+}
+.font1-5 {
+  font-size: 1.5em;
+}
+
+.margintop50 {
+  margin-top: 50px;
+}
+
+.btnwidth {
+  width: 100%;
+}
+
+/* for showing iframes in 100% width and height */
+.iframe-full-size {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
 }
