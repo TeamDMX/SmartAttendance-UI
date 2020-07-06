@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
+	<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
+
+	<title>Manage Students </title>
+
+</head>
+
+<body class="darkbg">
+
+	<div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered " role="document">
+			<div class="modal-content activebg">
+				<div class="modal-header">
+					<h5 class="modal-title textWhite" id="exampleModalLabel">Profile</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<button class="btn statcardbg marginbtn">Change Password </button>
+					<button class="btn statcardbg marginbtn"> Logout</button>
+				</div>
+				<div class="modal-footer">
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container containerpadding">
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			Student data was edited successfully
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			Student deleted!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="row rowpadding">
+
+			<div class="col-sm">
+				<div class="jumbotron  paddingJump activebg">
+					<div class="row">
+						<div class="col-sm">
+							<div class="card statcardbg">
+
+								<div class="card-body">
+									<h5 class="display-4 textWhite statcard">320</h5>
+									<p class="card-text textWhite">Registered Students</p>
+									<p class="card-text textWhite updatestatus">Update 8 mins ago.</p>
+								</div>
+
+							</div>
+							<br>
+						</div>
+						<div class="col-sm">
+							<div class="card statcardbg">
+
+								<div class="card-body">
+									<h5 class="display-4 textWhite statcard">320</h5>
+									<p class="card-text textWhite">Registered Students</p>
+									<p class="card-text textWhite updatestatus">Update 8 mins ago.</p>
+								</div>
+
+							</div>
+							<br>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="jumbotron  paddingJump activebg jumbotronpadding">
+					<ul class="nav nav-tabs">
+						<li class="active "><a data-toggle="tab" class="btn btn-info customtab" href="#stdlist">Students</a>
+						</li>
+						<li><a data-toggle="tab" href="#editstd" class="btn btn-info customtab">Edit Student</a></li>
+
+					</ul>
+					<div class="tab-content">
+						<div id="stdlist" class="tab-pane fade in active">
+							<h6 class="display-4 textWhite header"> All Students</h6>
+
+							<table class="table table-dark table-borderless customtable">
+								<thead class="tablehead">
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Full Name</th>
+										<th scope="col">Index</th>
+										<th scope="col">Reg.No</th>
+										<th scope="col">Another Column</th>
+										<th scope="col ">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>HR Madhawa</td>
+										<td>ICT18XXX</td>
+										<td>TE2565654</td>
+										<td>Lorem Ipsum</td>
+										<td><button class="btn btn-danger custombtn"> <i class="fa fa-trash-o"></i>
+											</button>
+											<button class="btn btn-success custombtn"><i
+													class="fa fa-pencil-square-o"></i></button></td>
+
+									</tr>
+
+									<tr>
+										<th scope="row">1</th>
+										<td>HR Madhawa</td>
+										<td>ICT18XXX</td>
+										<td>TE2565654</td>
+										<td>Lorem Ipsum</td>
+										<td><button class="btn btn-danger custombtn"> <i class="fa fa-trash-o"></i>
+											</button>
+											<button class="btn btn-success custombtn"><i
+													class="fa fa-pencil-square-o"></i></button></td>
+
+									</tr>
+
+									<tr>
+										<th scope="row">1</th>
+										<td>HR Madhawa</td>
+										<td>ICT18XXX</td>
+										<td>TE2565654</td>
+										<td>Lorem Ipsum</td>
+										<td><button class="btn btn-danger custombtn"> <i class="fa fa-trash-o"></i>
+											</button>
+											<button class="btn btn-success custombtn"><i
+													class="fa fa-pencil-square-o"></i></button></td>
+
+									</tr>
+
+
+
+								</tbody>
+							</table>
+						</div>
+
+						<div id="editstd" class="tab-pane fade in active">
+							<h6 class="display-4 textWhite header">Edit Student</h6>
+
+							<form>
+
+								<div class="form-group">
+									<label class="textWhite">Name with Intials</label>
+									<input type="text" class="form-control" id="">
+								</div>
+
+								<div class="form-group">
+									<label class="textWhite">Index Number</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="form-group">
+									<label class="textWhite">Registration Number</label>
+									<input type="text" class="form-control" id="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1" class="textWhite">Select Degree</label>
+									<select class="form-control selectdark" id="exampleFormControlSelect1">
+										<option>Degree</option>
+
+									</select>
+								</div>
+								<div class="text-right">
+									<button type="button" class="btn col-md-3  bgyellow1"><i class="fa fa-check">
+										</i>&nbsp; Save</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<script src="../../libs/jquery/jquery.js"></script>
+	<script src="../../libs/popper/popper.js"></script>
+	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>
