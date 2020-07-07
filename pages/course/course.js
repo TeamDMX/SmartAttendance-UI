@@ -185,6 +185,9 @@ const validateForm = async () => {
         // element id is equal to database attribute name
         const elementId = vi.attribute;
 
+        // ignore ids
+        if (elementId == "id") continue;
+
         // validation status of the form
         let isValid = FormUtil.validateElementValue(vi);
 
@@ -295,7 +298,7 @@ const updateEntry = async () => {
 
     // show output modal based on response
     if (response.status) {
-        mainWindow.showOutputToast("Success!", response.msg);
+        mainWindow.showOutputModal("Success!", response.msg);
         // reset selected entry
         tempData.selectedEntry = undefined;
         reloadModule();
@@ -339,6 +342,6 @@ const setFormButtionsVisibility = (action) => {
 // reset form
 const resetForm = () => {
     $("#mainForm").trigger("reset");
-    $(".form-group").removeClass("is-valid");
-    $(".form-group").removeClass("is-invalid");
+    $("*").removeClass("is-valid");
+    $("*").removeClass("is-invalid");
 }
