@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
 	<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
-
-	<title>Manage Courses </title>
+	<link rel="stylesheet" href="../../libs/datatable/datatable.css">
+	<title>Manage Courses</title>
 
 </head>
 
@@ -40,20 +40,6 @@
 
 
 	<div class="container containerpadding">
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-			Course data was edited successfully
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			Course deleted!
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-
 		<div class="row rowpadding">
 
 			<div class="col-sm">
@@ -91,95 +77,51 @@
 
 				<div class="jumbotron  paddingJump activebg jumbotronpadding">
 					<ul class="nav nav-tabs">
-						<li class="active "><a data-toggle="tab" class="btn btn-info customtab" href="#clist">Courses</a></li>
-						<li><a data-toggle="tab" href="#editc" class="btn btn-info customtab">Edit Course</a></li>
+						<li class="active "><a data-toggle="tab" class="btn btn-info customtab" href="#tabTable">Courses</a>
+						</li>
+						<li><a data-toggle="tab" href="#tabForm" class="btn btn-info customtab">Add New</a></li>
 
 					</ul>
 					<div class="tab-content">
-						<div id="clist" class="tab-pane fade in active">
-							<h6 class="display-4 textWhite header"> All Courses</h6>
 
-							<table class="table table-dark table-borderless customtable">
-								<thead class="tablehead">
-									<tr>
-										<th scope="col">Course ID</th>
-										<th scope="col">Course Name</th>
-										<th scope="col">Lecturer</th>
-										<th scope="col">Description</th>
-										<th scope="col">Actions</th>
+						<div id="tabTable" class="container tab-pane active">
+							<div id="mainTableHolder" class="container-fluid" style="margin-top:30px">
 
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th scope="row">ITC1561</th>
-										<td>Web App</td>
-										<td>Dr. Madhawa</td>
-										<td>Lorem Ipsum</td>
-
-
-										<td><button class="btn btn-danger custombtn"> <i class="fa fa-trash-o"></i>
-											</button>
-											<button class="btn btn-success custombtn"><i
-													class="fa fa-pencil-square-o"></i></button></td>
-
-									</tr>
-
-
-
-
-
-
-								</tbody>
-							</table>
+							</div>
 						</div>
 
-						<div id="editc" class="tab-pane fade in active">
-							<h6 class="display-4 textWhite header">Course ID</h6>
+						<div id="tabForm" class="container tab-pane fade lowmargin">
+
 
 							<form>
+
 								<div class="form-group">
-									<label class="textWhite">Course ID</label>
-									<input type="text" class="form-control" id="">
+									<label class="textWhite">Code: </label>
+									<input type="text" class="form-control" id="code" name="code">
 								</div>
 
 								<div class="form-group">
-									<label class="textWhite">Course Name</label>
-									<input type="text" class="form-control" id="">
-								</div>
-
-								<div class="form-group">
-									<label class="textWhite">Lecturer</label>
-									<input type="text" class="form-control" id="">
-								</div>
-								<div class="form-group">
-									<label class="textWhite">Description</label>
-									
-									<textarea class="form-control textareabg">
-
-									</textarea>
+									<label class="textWhite">Name: </label>
+									<input type="text" class="form-control" id="name" name="name">
 								</div>
 
 								<div class="text-right">
 									<div class="row">
 										<div class="col-sm">
 											<button type="button" class="btn btnwidth marginbtn bgyellow1"><i class="fa fa-check">
-											</i>&nbsp; Add</button>
+												</i>&nbsp; Add</button>
 										</div>
 
 										<div class="col-sm">
 											<button type="button" class="btn btnwidth marginbtn btn-info"><i class="fa fa-pencil-square-o">
-											</i>&nbsp; Edit</button>
+												</i>&nbsp; Edit</button>
 										</div>
 
 										<div class="col-sm">
 											<button type="button" class="btn btnwidth marginbtn btn-danger"><i class="fa fa-trash-o">
-											</i>&nbsp; Delete</button>
+												</i>&nbsp; Delete</button>
 										</div>
 									</div>
-									
-								
-										
 								</div>
 
 							</form>
@@ -196,6 +138,10 @@
 	<script src="../../libs/jquery/jquery.js"></script>
 	<script src="../../libs/popper/popper.js"></script>
 	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
+	<script src="../../assets/js/common.js"></script>
+
+	<script src="../../libs/datatable/datatable.js"></script>
+	<script src="./course.js"></script>
 </body>
 
 </html>
