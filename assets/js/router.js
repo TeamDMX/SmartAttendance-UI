@@ -38,20 +38,18 @@ const updateRouteInfo = () => {
     routes = Object.values(routes).filter(route => route.path == path);
     $("#txtNavbarTitle").text(routes[0].title);
 
-    // // public data for iframe access
-    // const mainWindowData = {
-    //     showOutputModal,
-    //     showConfirmModal,
-    //     showOutputToast,
-    //     tempData,
-    //     loadRoute
-    // }
+    // public data for iframe access
+    const mainWindowData = {
+        showOutputModal,
+        // tempData,
+        loadRoute
+    }
 
-    // // make modal functions available inside the iframeMain
-    // const iframeWindow = document.getElementById("iframeMain").contentWindow;
-    // iframeWindow.mainWindow = mainWindowData;
+    // make modal functions available inside the iframeMain
+    const iframeWindow = document.getElementById("iframeMain").contentWindow;
+    iframeWindow.mainWindow = mainWindowData;
 
-    // // if location is dashboard, update tile visibility
+    // if location is dashboard, update tile visibility
     // if (path.indexOf("dashboard.html") > -1) {
     //     iframeWindow.updateTiles();
     // }

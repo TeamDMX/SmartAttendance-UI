@@ -60,29 +60,34 @@
   <!--end of navbar-->
 
 
-  <!--options model-->
-  <div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
-      <div class="modal-content activebg">
+  <!--output model-->
+
+  <div class="modal fade" id="modalOutput">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title textWhite" id="exampleModalLabel">Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div class="modal-body">
-          <button class="btn statcardbg marginbtn">Change Password </button>
-          <button class="btn statcardbg marginbtn"> Logout</button>
+
+        <!-- Modal body -->
+        <div class="modal-body" id="modalOutputBody">
+
         </div>
+
+        <!-- Modal footer -->
         <div class="modal-footer">
-
-
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
+
       </div>
     </div>
   </div>
-  <!--options model ends here-->
+
+
+  <!--output model ends here-->
 
   <div class="container-fluid" style="padding-right: 0; padding-left: 0;">
     <div class="iframeMainHolder">
@@ -111,6 +116,20 @@
         loadRoute(routeName);
       }
     }
+    
+    // when iframe is load
+    $("#iframeMain").on("load", () => {
+      // check logged in
+      updateRouteInfo();
+    });
+
+    const showOutputModal = (title, body) => {
+      $("#modalOutputTitle").text(title);
+      $("#modalOutputBody").html("Unknown");
+      $("#modalOutputBody").html(body);
+      $("#modalOutput").modal();
+    }
+
   </script>
 </body>
 
