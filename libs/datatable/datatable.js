@@ -51,7 +51,7 @@ class DataTable {
     $(`#${parentId}`).append(`
       <div id="${parentId}-dt-wrapper" style="">
         <div style="margin-bottom: 10px;">
-          <button id="${parentId}-dt-print" class="btn btn-info lowmargin ">
+          <button id="${parentId}-dt-print" class="btn btn-info lowmargin" style="display:none">
             <i class="fa fa-print" aria-hidden="true"></i>
             &nbsp Print
           </button>
