@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------------------------------------
                                           Window Data
 -------------------------------------------------------------------------------------------------------*/
-window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: undefined };
+window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: "1111" };
 
 // main endpoint used for requests
 tempData.mainEndPoint = "/api/courses";
@@ -19,12 +19,12 @@ async function loadModule() {
         data: { module: "COURSE" }
     });
 
-    
+
     // save validation info (regexes) on global tempData
     tempData.validationInfo = response.data;
 
 
-    // registerEventListeners();
+    registerEventListeners();
     FormUtil.enableRealtimeValidation(tempData.validationInfo);
 
 
@@ -64,7 +64,7 @@ const reloadModule = async () => {
 const loadMainTable = async () => {
     const tableData = await getInitialTableData();
     // load data table
-    window.mainTable = new DataTable("mainTableHolder", tableData, searchEntries, loadMoreEntries, "1111");
+    window.mainTable = new DataTable("mainTableHolder", tableData, searchEntries, loadMoreEntries, tempData.permission);
 }
 
 const getInitialTableData = async () => {
@@ -107,6 +107,11 @@ const loadMoreEntries = async (searchValue, rowsCount) => {
     mainTable.append(tableData);
 }
 
+const tableTabClick = async () => {
+    // hide update tab
+    $("#tabUpdate").hide();
+}
+
 const formTabClick = async () => {
     // when form tab is clicked, reset the form 
     resetForm();
@@ -114,17 +119,8 @@ const formTabClick = async () => {
     // show / hide proper button
     setFormButtionsVisibility("add");
 
-    // enable form inputs
-    FormUtil.setReadOnly("#mainForm", false);
-
-    // show hide top buttons
-    $("#btnTopAddEntry").hide();
-    $("#btnTopViewEntry").show();
-}
-
-const tableTabClick = () => {
-    $("#btnTopViewEntry").hide();
-    $("#btnTopAddEntry").show();
+    // hide update tab
+    $("#tabUpdate").hide();
 }
 
 const getTableData = (responseData) => {
@@ -133,7 +129,7 @@ const getTableData = (responseData) => {
         return {
             "Code": entry.code,
             "Course Name": entry.name,
-            "Actions":`
+            "Actions": `
                         <button onclick="editEntry('${entry.id}')" class="btn btn-success custombtn">
                             <i class="fa fa-pencil-square-o"></i>
                         </button>
@@ -235,7 +231,7 @@ const addEntry = async () => {
     }
 }
 
-const editEntry = async (id, readOnly = false) => {
+const editEntry = async (id) => {
     // get entry data from db and show in the form
     const response = await Request.send(tempData.mainEndPoint, "GET", { data: { id: id } });
     const entry = response.data;
@@ -248,14 +244,13 @@ const editEntry = async (id, readOnly = false) => {
 
     // fill form inputs
     $("#name").val(entry.name);
+    $("#code").val(entry.code);
 
-    if (readOnly) {
-        setFormButtionsVisibility("view");
-        FormUtil.setReadOnly("#mainForm", true);
-    } else {
-        FormUtil.setReadOnly("#mainForm", false);
-        setFormButtionsVisibility("edit");
-    }
+    $("#tabUpdate").show();
+    $("#tabUpdate").tab("show");
+
+    // show buttons
+    setFormButtionsVisibility("edit");
 }
 
 // update entry in the database
@@ -325,20 +320,11 @@ const setFormButtionsVisibility = (action) => {
     let permission = tempData.permission;
 
     switch (action) {
-        case "view":
-            $("#btnFmAdd").hide();
-            $("#btnFmUpdate").hide();
-            $("#btnFmDelete").hide();
-            $("#btnFmReset").hide();
-            $("#btnFmPrint").show();
-            break;
-
         case "edit":
             $("#btnFmAdd").hide();
             if (permission[2] !== 0) $("#btnFmUpdate").show();
             if (permission[3] !== 0) $("#btnFmDelete").show();
             $("#btnFmReset").show();
-            $("#btnFmPrint").hide();
             break;
 
         case "add":
@@ -346,7 +332,6 @@ const setFormButtionsVisibility = (action) => {
             $("#btnFmUpdate").hide();
             $("#btnFmDelete").hide();
             $("#btnFmReset").show();
-            $("#btnFmPrint").hide();
             break;
     }
 }
@@ -354,6 +339,6 @@ const setFormButtionsVisibility = (action) => {
 // reset form
 const resetForm = () => {
     $("#mainForm").trigger("reset");
-    $(".form-group").removeClass("has-error has-success");
-    $(".form-group").children(".form-control-feedback").remove();
+    $(".form-group").removeClass("is-valid");
+    $(".form-group").removeClass("is-invalid");
 }
