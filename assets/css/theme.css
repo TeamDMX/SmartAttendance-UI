@@ -172,9 +172,24 @@ input[type="password"]:focus {
   width: 100%;
 }
 
+.textyellow{
+  color:#DAB734
+}
+
+
+
 /* for showing iframes in 100% width and height */
 .iframe-full-size {
   min-height: 100vh;
   height: 100%;
   width: 100%;
+}
+
+.shadow{
+  box-shadow: 10px 10px 8px 10px #1F1F23;
+}
+
+.dash2ndrowpad
+{
+  margin-top: -50px;
 }
