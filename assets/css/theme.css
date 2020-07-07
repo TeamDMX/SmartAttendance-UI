@@ -122,6 +122,11 @@ input[type="password"]:focus {
   padding: 30px;
 }
 
+.btnprint
+{
+  height: 30px;
+}
+
 .textWhite {
   color: azure;
 }
@@ -172,6 +177,10 @@ input[type="password"]:focus {
   width: 100%;
 }
 
+.widthmd{
+  width:40%;
+}
+
 .textyellow{
   color:#DAB734
 }
@@ -192,4 +201,9 @@ input[type="password"]:focus {
 .dash2ndrowpad
 {
   margin-top: -50px;
+}
+
+.lowmargin {
+  margin-top: 5px;
+  margin-bottom:5px;
 }
