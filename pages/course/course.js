@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------------------------------------
                                           Window Data
 -------------------------------------------------------------------------------------------------------*/
-window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: "1111" };
+window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: null };
 
 // main endpoint used for requests
 tempData.mainEndPoint = "/api/courses";
@@ -9,15 +9,10 @@ tempData.mainEndPoint = "/api/courses";
 /*-------------------------------------------------------------------------------------------------------
                                             General
 -------------------------------------------------------------------------------------------------------*/
-$(document).ready(() => {
-    loadModule()
-});
 
-async function loadModule() {
+async function loadModule(permissionStr) {
     // get regexes for validation and store on window tempData
-    const response = await Request.send("/api/regexes", "GET", {
-        data: { module: "COURSE" }
-    });
+    const response = await Request.send("/api/regexes/COURSE");
 
 
     // save validation info (regexes) on global tempData
@@ -28,22 +23,22 @@ async function loadModule() {
     FormUtil.enableRealtimeValidation(tempData.validationInfo);
 
 
-    // // create an array from permission string
-    // const permission = permissionStr.split("").map((p) => parseInt(p));
+    // create an array from permission string
+    const permission = permissionStr.split("").map((p) => parseInt(p));
 
-    // // show hide buttions based on permission
-    // if (permission[0] == 0) {
-    //     $("#btnFmAdd").hide();
-    // }
-    // if (permission[2] == 0) {
-    //     $("#btnFmUpdate").hide();
-    // }
-    // if (permission[3] == 0) {
-    //     $("#btnFmDelete").hide();
-    // }
+    // show hide buttions based on permission
+    if (permission[0] == 0) {
+        $("#btnFmAdd").hide();
+    }
+    if (permission[2] == 0) {
+        $("#btnFmUpdate").hide();
+    }
+    if (permission[3] == 0) {
+        $("#btnFmDelete").hide();
+    }
 
-    // // save permission globally
-    // tempData.permission = permission;
+    // save permission globally
+    tempData.permission = permission;
 
     await loadMainTable();
 }
@@ -69,16 +64,16 @@ const loadMainTable = async () => {
 
 const getInitialTableData = async () => {
     // get initial entries from the server
-    const response = await Request.send(tempData.mainEndPoint, "GET");
+    const response = await Request.send(`${tempData.mainEndPoint}/search/ /skip/0`, "GET");
 
     // convert response data to data table format
     return getTableData(response.data);
 }
 
 const searchEntries = async (searchValue) => {
-    const response = await Request.send(tempData.mainEndPoint, "GET", {
-        data: { keyword: searchValue }
-    });
+    if (searchValue.trim() == "") searchValue = " "
+
+    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/0`, "GET");
 
     const tableData = getTableData(response.data);
 
@@ -91,9 +86,7 @@ const loadMoreEntries = async (searchValue, rowsCount) => {
     // check if all data has been loaded
     if (!tempData.loadMore) return;
 
-    const response = await Request.send(tempData.mainEndPoint, "GET", {
-        data: { keyword: searchValue, skip: rowsCount }
-    });
+    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/${rowsCount}`, "GET");
 
     // if results came empty (all loaded)
     if (response.data.length == 0) {
@@ -229,14 +222,14 @@ const addEntry = async () => {
 
     // show output modal based on response
     if (response.status) {
-        mainWindow.showOutputToast("Success!", response.msg);
+        mainWindow.showOutputModal("Success!", response.msg);
         reloadModule();
     }
 }
 
 const editEntry = async (id) => {
     // get entry data from db and show in the form
-    const response = await Request.send(tempData.mainEndPoint, "GET", { data: { id: id } });
+    const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "GET");
     const entry = response.data;
 
     // change tab to form
@@ -294,7 +287,7 @@ const updateEntry = async () => {
     newEntryObj.id = tempData.selectedEntry.id;
 
     // send put reqeust to update data
-    const response = await Request.send(tempData.mainEndPoint, "PUT", { data: newEntryObj });
+    const response = await Request.send(`${tempData.mainEndPoint}/${newEntryObj.id}`, "PUT", { data: newEntryObj });
 
     // show output modal based on response
     if (response.status) {
@@ -307,12 +300,12 @@ const updateEntry = async () => {
 
 // delete entry from the database
 const deleteEntry = async (id = tempData.selectedEntry.id) => {
-    const confirmation = await mainWindow.showConfirmModal("Confirmation", "Do you really need to delete this entry?");
+    const confirmation = window.confirm("Do you really need to delete this entry?");
 
     if (confirmation) {
-        const response = await Request.send(tempData.mainEndPoint, "DELETE", { data: { id: id } });
+        const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "DELETE");
         if (response.status) {
-            mainWindow.showOutputToast("Success!", response.msg);
+            mainWindow.showOutputModal("Success!", response.msg);
             tempData.selectedEntry = undefined
             reloadModule();
         }
