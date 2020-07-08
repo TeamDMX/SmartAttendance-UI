@@ -101,28 +101,81 @@
   <script src="./assets/js/router.js"></script>
 
   <script>
-    $(document).ready(init);
+    /*-------------------------------------------------------------------------------------------------------
+                                             Window Data
+   -------------------------------------------------------------------------------------------------------*/
+    // privileges will have {module name: 0101} style 
+    window.tempData = { profile: null, privileges: {} };
 
-    function init() {
-      // check window location and load correct page (route)
-      const locationParts = window.location.href.split("?page=");
-      let routeName = locationParts[locationParts.length - 1].trim();
+    $(document).ready(() => {
+      // get profile using fetch api
+      fetch("http://localhost:3000/api/profile").then(res => {
+        return res.json();
 
-      // if route name is not given in the url, load dhasboard
-      if (!routeName || locationParts.length == 1) routeName = "dashboard";
+      }).then(response => {
+        if (!response.status) {
+          showOutputModal("Error", "Unable to retrive user profile!.");
+          window.location = "./login.html";
+          return;
+        }
 
-      // load route
-      if (routeName !== "") {
-        loadRoute(routeName);
-      }
-    }
-    
+        // get data from the response
+        const data = response.data;
+
+        // hide all menu items
+
+
+        // build privileges from the response and update UI
+        Object.keys(data.privileges).forEach(moduleName => {
+          const permission = data.privileges[moduleName];
+          tempData.privileges[moduleName] = permission;
+
+          // update ui
+        });
+
+
+        // check window location and load correct page (route)
+        const locationParts = window.location.href.split("?page=");
+        let routeName = locationParts[locationParts.length - 1].trim();
+
+        // if route name is not given in the url, load dhasboard
+        if (!routeName || locationParts.length == 1) routeName = "dashboard";
+
+        // load route
+        if (routeName !== "") {
+          loadRoute(routeName);
+        }
+
+      }).catch(e => {
+        console.log(e);
+        showOutputModal("Error", "Something went wrong while reading your profile!.");
+        return;
+      });
+    });
+
+
     // when iframe is load
     $("#iframeMain").on("load", () => {
       // check logged in
       updateRouteInfo();
     });
 
+    // logout from the system
+    const logOut = () => {
+      fetch("http://localhost:3000/api/logOut").then(res => {
+        return res.json();
+      }).then(data => {
+        if (data.status) {
+          loadRoute("noauth");
+        } else {
+          showOutputModal("Error!.", "You need to be logged in first!.");
+        }
+      }).catch(e => {
+        showOutputModal("Error!.", "Unable to send a logout request.");
+      });
+    }
+
+    // controls modal for showing various outputs
     const showOutputModal = (title, body) => {
       $("#modalOutputTitle").text(title);
       $("#modalOutputBody").html("Unknown");
@@ -130,6 +183,34 @@
       $("#modalOutput").modal();
     }
 
+    // controls toast for showing various outputs
+    const showOutputToast = (title, body, type = "success") => {
+      $.toast({
+        heading: title,
+        text: body,
+        hideAfter: 4000,
+        position: "bottom-right",
+        icon: type,
+        stack: false,
+      })
+    }
+
+    // show confirmation modal
+    const showConfirmModal = (title, body) => {
+      return new Promise((resolve, reject) => {
+        $("#modalConfirmTitle").text(title);
+        $("#modalConfirmBody").html("Unknown");
+        $("#modalConfirmBody").html(body);
+        $("#modalConfirm").modal();
+        $("#btnModalYes").on("click", () => {
+          resolve(true);
+          $("#modalConfirm").modal("hide");
+        });
+        $("#btnModalNo").on("click", () => {
+          resolve(false);
+        });
+      });
+    }
   </script>
 </body>
 

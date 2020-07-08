@@ -41,7 +41,7 @@ const updateRouteInfo = () => {
     // public data for iframe access
     const mainWindowData = {
         showOutputModal,
-        // tempData,
+        tempData,
         loadRoute
     }
 
@@ -54,14 +54,14 @@ const updateRouteInfo = () => {
     //     iframeWindow.updateTiles();
     // }
 
-    // // set permissions for forms and other components inside iframe
-    // if (iframeWindow.loadModule) {
-    //     path = path.replace(".html", "");
-    //     const pathParts = path.split("/");
-    //     const moduleName = pathParts[pathParts.length - 1].toUpperCase().trim();
-    //     const permission = tempData.privileges[moduleName];
-    //     iframeWindow.loadModule(permission);
-    // }
+    // set permissions for forms and other components inside iframe
+    if (iframeWindow.loadModule) {
+        path = path.replace(".html", "");
+        const pathParts = path.split("/");
+        const moduleName = pathParts[pathParts.length - 1].toUpperCase().trim();
+        const permission = tempData.privileges[moduleName];
+        iframeWindow.loadModule(permission);
+    }
 }
 
 const getRoutes = () => {
