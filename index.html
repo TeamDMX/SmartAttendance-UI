@@ -28,7 +28,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <!--Activated-->
-          <a class="nav-link" href="#">Action Here <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href=""><b>Smart Attendance</b> | <span id="lblNavTitle"></span></a>
           <!-- Replace your action text here-->
         </li>
 
@@ -49,7 +49,7 @@
         <a class="nav-link" href="#" style="color: beige;" data-toggle="modal" data-target="#options">
           <a class="navbar-brand" href="#" data-toggle="modal" data-target="#options">
             <img src="./assets/images/user.svg" width="30" data-toggle="modal" data-target="#options" height="30" alt=""
-              loading="lazy"> &nbsp; Username
+              loading="lazy"> &nbsp; <span id="lblNavUsername"></span>
           </a>
 
         </a>
@@ -121,6 +121,11 @@
 
         // get data from the response
         const data = response.data;
+
+        // update ui
+
+        // get username from email
+        $("#lblNavUsername").text(data.email.split("@")[0].trim());
 
         // hide all menu items
 

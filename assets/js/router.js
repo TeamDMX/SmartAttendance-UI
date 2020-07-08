@@ -36,7 +36,7 @@ const updateRouteInfo = () => {
     // proceed with title update
     let routes = getRoutes();
     routes = Object.values(routes).filter(route => route.path == path);
-    $("#txtNavbarTitle").text(routes[0].title);
+    $("#lblNavTitle").text(routes[0].title);
 
     // public data for iframe access
     const mainWindowData = {
