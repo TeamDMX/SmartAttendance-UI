@@ -122,14 +122,12 @@ const getTableData = (responseData) => {
         return {
             "Code": entry.code,
             "Course Name": entry.name,
-            "Actions": `
-                        <button onclick="editEntry('${entry.id}')" class="btn btn-success custombtn">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </button>
-                        <button onclick="deleteEntry('${entry.id}')" class="btn btn-danger custombtn"> 
-                            <i class="fa fa-trash-o"></i>
-                        </button>
-                        `
+            "Edit": `<button onclick="editEntry('${entry.id}')" class="btn btn-success custombtn">
+                            <i class="fa fa-pencil-square-o"></i> Edit
+                    </button>`,
+            "Delete": `<button onclick="deleteEntry('${entry.id}')" class="btn btn-danger custombtn"> 
+                            <i class="fa fa-trash-o"></i> Delete
+                    </button>`
         }
     });
 }
