@@ -34,7 +34,7 @@ class DataTable {
       // generate html for table headings
       keys.forEach(key => {
         if (["Edit", "Delete", "View"].includes(key)) {
-          headings += `<th class="dt-${key}-${parentId}-col">${key}</th>`
+          headings += `<th class="dt-${key}-${parentId}-col" style="width:13%">${key}</th>`
         } else {
           headings += `<th>${key}</th>`
         }
@@ -97,7 +97,7 @@ class DataTable {
           if (buttonHtml.indexOf("Edit") > -1) action = "Edit";
           if (buttonHtml.indexOf("Delete") > -1) action = "Delete";
           if (buttonHtml.indexOf("View") > -1) action = "View";
-          rows += `<td class="dt-${action}-${this.parentId}-col">${dataItem[key]}</td>`
+          rows += `<td class="dt-${action}-${this.parentId}-col" style="width:13%">${dataItem[key]}</td>`
         }
       })
       rows += "</tr>";
