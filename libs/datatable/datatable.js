@@ -132,11 +132,12 @@ class DataTable {
 
 
     // event listener to detect when user scroll to the end of the table and load more
-    $(`#${parentId}-dt-tbody`).scroll((e) => {
+    $(`#${parentId}-dt-tbody`).scroll((e) => {      
       const target = e.target;
       // const isBottom = ($(target).scrollTop() + $(target).innerHeight() + 10 >= $(target)[0].scrollHeight);
-      const isBottom = ($(target).scrollTop() + $(target).innerHeight() >= $(target)[0].scrollHeight);
-      if (isBottom) {
+      const isBottom = ($(target).scrollTop() + $(target).innerHeight() >= $(target)[0].scrollHeight - 3);      
+
+      if (isBottom) {        
         this.loadMoreCallback($(`#${parentId}-dt-search`).val(), $(`#${parentId}-dt-tbody tr`).length);
       }
     });
