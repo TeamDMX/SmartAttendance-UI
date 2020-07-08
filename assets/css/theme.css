@@ -98,6 +98,7 @@ input[type="password"]:focus {
 .tablehead {
   background-color: #e5b02e;
   border-radius: 10px;
+  color:#2d3038;
 }
 
 .customtable {
@@ -136,6 +137,7 @@ input[type="password"]:focus {
   margin-right: 0.5px;
   border-radius: 0px;
   background-color: #efb342;
+  color:#2d3038;
   border: 0px;
 }
 .customtab:active {
@@ -143,7 +145,7 @@ input[type="password"]:focus {
   margin-right: 0.5px;
   border-radius: 0px;
   background-color: #d6983a;
-  color: #d6983a;
+  color:#2d3038;
   border: 0px;
 }
 
@@ -206,4 +208,8 @@ input[type="password"]:focus {
 .lowmargin {
   margin-top: 5px;
   margin-bottom:5px;
+}
+
+.textdark{
+  color:#2d3038;
 }
