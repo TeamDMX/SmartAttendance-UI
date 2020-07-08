@@ -86,6 +86,8 @@ const loadMoreEntries = async (searchValue, rowsCount) => {
     // check if all data has been loaded
     if (!tempData.loadMore) return;
 
+    if (searchValue.trim() == "") searchValue = " ";
+
     const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/${rowsCount}`, "GET");
 
     // if results came empty (all loaded)
