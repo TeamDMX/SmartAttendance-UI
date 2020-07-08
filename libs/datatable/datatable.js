@@ -82,7 +82,7 @@ class DataTable {
     const keys = this.getKeys(data);
     let rows = "";
     data.forEach(dataItem => {
-      rows += "<tr>";
+      rows += "<tr class='bottomborder'>";
       keys.forEach(key => {
         // fix when key value is null
         dataItem[key] = (dataItem[key] == null) ? "" : dataItem[key];
