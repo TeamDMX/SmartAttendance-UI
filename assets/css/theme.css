@@ -239,3 +239,27 @@ li{
 .dash-card-margin{
   margin: 5px;
 }
+
+.cardeffects{
+ 
+  animation-duration: 1s;
+}
+
+.cardeffects:hover{
+ 
+  background-color: #d6983a;
+  color:white;
+  transition: 0.2s;
+  border:  solid #eeaa44 1px;
+ 
+  
+}
+
+.cardeffects:active{
+ 
+  background-color: #eea942;
+  color:white;
+  transition: 0.1s;
+  border: solid #eeaa44 1px;
+  
+}
