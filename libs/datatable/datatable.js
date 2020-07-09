@@ -59,7 +59,7 @@ class DataTable {
             <input type="text" id="${parentId}-dt-search" class="form-control" placeholder="Search..">
           </div>
         </div>
-        <table id="${parentId}-dt-table" class="table table-dark table-borderless customtable data-table">
+        <table id="${parentId}-dt-table" class="table table-dark table-borderless customtable data-table table-responsive">
           <thead class="tablehead">
             <tr>
               ${headings}
