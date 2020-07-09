@@ -15,3 +15,18 @@
 .data-table tbody::-webkit-scrollbar {
   display: none;
 }
+
+.data-table {
+  width: auto !important;
+  table-layout: auto !important;
+}
+
+.data-table thead th,
+.data-table tfoot th {
+  width: auto !important;
+}
+
+.data-table tbody td,
+.data-table tfoot td {
+  width: auto !important;
+}
