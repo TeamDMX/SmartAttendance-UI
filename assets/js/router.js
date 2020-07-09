@@ -50,9 +50,9 @@ const updateRouteInfo = () => {
     iframeWindow.mainWindow = mainWindowData;
 
     // if location is dashboard, update tile visibility
-    // if (path.indexOf("dashboard.html") > -1) {
-    //     iframeWindow.updateTiles();
-    // }
+    if (path.indexOf("dashboard.html") > -1) {
+        iframeWindow.updateTiles();
+    }
 
     // set permissions for forms and other components inside iframe
     if (iframeWindow.loadModule) {
