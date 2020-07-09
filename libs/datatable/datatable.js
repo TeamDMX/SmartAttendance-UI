@@ -8,7 +8,8 @@ class DataTable {
     this.loadMoreCallback = loadMoreCallback;
     // permission used to show hide table columns (binary string)
     this.permission = permission;
-
+    // store id of the currently selected entry
+    this.selectedEntryId = null;
     // load initial data to the table
     this.loadTable(data);
 
@@ -33,11 +34,8 @@ class DataTable {
 
       // generate html for table headings
       keys.forEach(key => {
-        if (["Edit", "Delete", "View"].includes(key)) {
-          headings += `<th class="dt-${key}-${parentId}-col" style="width:13%">${key}</th>`
-        } else {
-          headings += `<th>${key}</th>`
-        }
+        if (key == "entryId") return;
+        headings += `<th>${key}</th>`;
       });
 
       // generate html table rows
@@ -51,15 +49,18 @@ class DataTable {
     $(`#${parentId}`).append(`
       <div id="${parentId}-dt-wrapper" style="">
         <div style="margin-bottom: 10px;">
-          <button id="${parentId}-dt-print" class="btn btn-info lowmargin" style="display:none">
-            <i class="fa fa-print" aria-hidden="true"></i>
-            &nbsp Print
+          <button id="${parentId}-dt-btnEdit" onclick="editEntry()" class="btn btn-success custombtn" style="display:none">
+            <i class="fa fa-pencil-square-o"></i> 
+          </button>
+          <button id="${parentId}-dt-btnDelete" onclick="deleteEntry()" class="btn btn-danger custombtn" style="display:none">
+            <i class="fa fa-trash-o"></i> 
           </button>
           <div class="float-right lowmargin widthmd">
             <input type="text" id="${parentId}-dt-search" class="form-control" placeholder="Search..">
           </div>
         </div>
-        <table id="${parentId}-dt-table" class="table table-dark table-borderless customtable data-table table-responsive">
+        <div class="table-responsive">
+        <table id="${parentId}-dt-table" class="table table-dark table-borderless customtable data-table">
           <thead class="tablehead">
             <tr>
               ${headings}
@@ -69,6 +70,7 @@ class DataTable {
               ${rows}
           </tbody>
         </table>
+        </div>
       </div>`
     );
   }
@@ -82,23 +84,12 @@ class DataTable {
     const keys = this.getKeys(data);
     let rows = "";
     data.forEach(dataItem => {
-      rows += "<tr class='bottomborder'>";
+      rows += `<tr class="bottomborder dt-row" data-id="${dataItem.entryId}">`;
       keys.forEach(key => {
-        // fix when key value is null
+        // fix when key value is null\
+        if (key == "entryId") return;
         dataItem[key] = (dataItem[key] == null) ? "" : dataItem[key];
-
-        // check if value is not a button
-        if (dataItem[key].indexOf("button") == -1) {
-          rows += `<td>${dataItem[key]}</td>`
-        } else {
-          // insert actions button with dt-action-col class
-          let action = "unified";
-          let buttonHtml = dataItem[key];
-          if (buttonHtml.indexOf("Edit") > -1) action = "Edit";
-          if (buttonHtml.indexOf("Delete") > -1) action = "Delete";
-          if (buttonHtml.indexOf("View") > -1) action = "View";
-          rows += `<td class="dt-${action}-${this.parentId}-col" style="width:13%">${dataItem[key]}</td>`
-        }
+        rows += `<td>${dataItem[key]}</td>`;
       })
       rows += "</tr>";
     });
@@ -110,6 +101,9 @@ class DataTable {
     const rows = this.getRows(data);
     $(`#${this.parentId}-dt-tbody`).empty();
     $(`#${this.parentId}-dt-tbody`).append(rows);
+
+    // add event listener for new rows
+    this.registerRowClickEvents();
   }
 
   append(data) {
@@ -132,12 +126,12 @@ class DataTable {
 
 
     // event listener to detect when user scroll to the end of the table and load more
-    $(`#${parentId}-dt-tbody`).scroll((e) => {      
+    $(`#${parentId}-dt-tbody`).scroll((e) => {
       const target = e.target;
       // const isBottom = ($(target).scrollTop() + $(target).innerHeight() + 10 >= $(target)[0].scrollHeight);
-      const isBottom = ($(target).scrollTop() + $(target).innerHeight() >= $(target)[0].scrollHeight - 3);      
+      const isBottom = ($(target).scrollTop() + $(target).innerHeight() >= $(target)[0].scrollHeight - 3);
 
-      if (isBottom) {        
+      if (isBottom) {
         this.loadMoreCallback($(`#${parentId}-dt-search`).val(), $(`#${parentId}-dt-tbody tr`).length);
       }
     });
@@ -145,6 +139,27 @@ class DataTable {
     // event listener for print button
     $(`#${parentId}-dt-print`).click(() => {
       this.print();
+    });
+
+    this.registerRowClickEvents();
+  }
+
+  registerRowClickEvents() {
+    $(`#${this.parentId}-dt-tbody tr`).click((e) => {
+      const currentRow = $(e.target).parent();
+
+      if (currentRow.hasClass("dt-row-selected")) {
+        currentRow.removeClass("dt-row-selected");
+        this.selectedEntryId = undefined;
+        $(`#${this.parentId}-dt-btnEdit`).fadeOut();
+        $(`#${this.parentId}-dt-btnDelete`).fadeOut();   
+      } else {
+        $(`#${this.parentId}-dt-tbody tr`).removeClass("dt-row-selected");
+        currentRow.addClass("dt-row-selected");
+        this.selectedEntryId = currentRow.data("id");
+        $(`#${this.parentId}-dt-btnEdit`).fadeIn();
+        $(`#${this.parentId}-dt-btnDelete`).fadeIn();
+      }
     });
   }
 

@@ -30,3 +30,11 @@
 .data-table tfoot td {
   width: auto !important;
 }
+
+.dt-row:hover {
+  background-color: #d6983a;
+}
+
+.dt-row-selected {
+  background-color: #eea942;
+}
