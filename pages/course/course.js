@@ -122,14 +122,9 @@ const getTableData = (responseData) => {
     // parse resposne data and return in data table frendly format
     return responseData.map(entry => {
         return {
+            "entryId": entry.id,
             "Code": entry.code,
             "Course Name": entry.name,
-            "Edit": `<button onclick="editEntry('${entry.id}')" class="btn btn-success custombtn">
-                            <i class="fa fa-pencil-square-o"></i> Edit
-                    </button>`,
-            "Delete": `<button onclick="deleteEntry('${entry.id}')" class="btn btn-danger custombtn"> 
-                            <i class="fa fa-trash-o"></i> Delete
-                    </button>`
         }
     });
 }
@@ -146,7 +141,7 @@ const registerEventListeners = () => {
     // register listeners for form buttons
     $("#btnFmAdd").on("click", addEntry);
     $("#btnFmUpdate").on("click", updateEntry);
-    $("#btnFmDelete").on("click", () => deleteEntry());
+    $("#btnFmDelete").on("click", () => deleteEntry(tempData.selectedEntry.id));
     $("#btnFmReset").on("click", resetForm);
     $("#btnFmPrint").on("click", () => FormUtil.print());
 
@@ -227,7 +222,7 @@ const addEntry = async () => {
     }
 }
 
-const editEntry = async (id) => {
+const editEntry = async (id = mainTable.selectedEntryId) => {
     // get entry data from db and show in the form
     const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "GET");
     const entry = response.data;
@@ -299,7 +294,7 @@ const updateEntry = async () => {
 }
 
 // delete entry from the database
-const deleteEntry = async (id = tempData.selectedEntry.id) => {
+const deleteEntry = async (id = mainTable.selectedEntryId) => {
     const confirmation = window.confirm("Do you really need to delete this entry?");
 
     if (confirmation) {
