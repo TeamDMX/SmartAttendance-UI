@@ -230,3 +230,12 @@ li{
 .notificationbox{
   height: 30em; padding: 20px; width: 13em;
 }
+
+.selectcvard{
+  padding-top: 4.5%;
+  font-size: 2em;
+}
+
+.dash-card-margin{
+  margin: 5px;
+}
