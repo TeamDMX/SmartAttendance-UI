@@ -4,7 +4,12 @@ class FormUtil {
         const selector = `#${elementValidationInfo.attribute}`;
 
         // get value of element id
-        const value = $(selector).val();
+        let value = $(selector).val();
+        
+        // convert arrays to strings before checking
+        if (Array.isArray(value)) {
+            value = value.toString();
+        }
 
         // create RegExp object from regex string
         const regex = new RegExp(elementValidationInfo.regex);

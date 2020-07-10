@@ -74,9 +74,9 @@ const getRoutes = () => {
             title: "Course View",
             path: "./pages/course/course.html"
         },
-        "lecture": {
-            title: "Lecture View",
-            path: "./pages/lecture/lecture.html"
+        "lecturer": {
+            title: "Lecturer View",
+            path: "./pages/lecturer/lecturer.html"
         },
         "student": {
             title: "Student View",
