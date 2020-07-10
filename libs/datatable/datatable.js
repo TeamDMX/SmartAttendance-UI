@@ -152,7 +152,7 @@ class DataTable {
         currentRow.removeClass("dt-row-selected");
         this.selectedEntryId = undefined;
         $(`#${this.parentId}-dt-btnEdit`).fadeOut();
-        $(`#${this.parentId}-dt-btnDelete`).fadeOut();   
+        $(`#${this.parentId}-dt-btnDelete`).fadeOut();
       } else {
         $(`#${this.parentId}-dt-tbody tr`).removeClass("dt-row-selected");
         currentRow.addClass("dt-row-selected");
@@ -213,28 +213,28 @@ class DataTable {
   // apply permission to table columns
   applyPermission() {
     if (this.permission[2] == 0) {
-      this.showEditColumn(false);
+      this.showEditButton(false);
     }
     if (this.permission[3] == 0) {
-      this.showDeleteColumn(false);
+      this.showDeleteButton(false);
     }
   }
 
-  showEditColumn(isVisible) {
+  showEditButton(isVisible) {
     const parentId = this.parentId;
     if (isVisible) {
-      $(`.dt-Edit-${parentId}-col`).show();
+      $(`#${parentId}-dt-btnEdit`).show();
     } else {
-      $(`.dt-Edit-${parentId}-col`).hide();
+      $(`#${parentId}-dt-btnEdit`).hide();
     }
   }
 
-  showDeleteColumn(isVisible) {
+  showDeleteButton(isVisible) {
     const parentId = this.parentId;
     if (isVisible) {
-      $(`.dt-Delete-${parentId}-col`).show();
+      $(`#${parentId}-dt-btnDeletet`).show();
     } else {
-      $(`.dt-Delete-${parentId}-col`).hide();
+      $(`#${parentId}-dt-btnDelete`).hide();
     }
   }
 }
