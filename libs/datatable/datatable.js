@@ -104,6 +104,13 @@ class DataTable {
 
     // add event listener for new rows
     this.registerRowClickEvents();
+
+    // hide top action buttons
+    $(`#${this.parentId}-dt-btnEdit`).hide();
+    $(`#${this.parentId}-dt-btnDelete`).hide();
+
+    // reset selected entry
+    this.selectedEntryId = undefined
   }
 
   append(data) {
@@ -232,7 +239,7 @@ class DataTable {
   showDeleteButton(isVisible) {
     const parentId = this.parentId;
     if (isVisible) {
-      $(`#${parentId}-dt-btnDeletet`).show();
+      $(`#${parentId}-dt-btnDelete`).show();
     } else {
       $(`#${parentId}-dt-btnDelete`).hide();
     }
