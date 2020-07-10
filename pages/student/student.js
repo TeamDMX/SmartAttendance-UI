@@ -208,7 +208,6 @@ const validateForm = async () => {
             entry[elementId] = Array.isArray(value) ? value.toString() : value;
         }
     }
-    console.log(entry);
 
     // if there aren't any errors
     if (errors == "") {
