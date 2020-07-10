@@ -52,6 +52,9 @@ const reloadModule = async () => {
 
     // fix for additional load more requests
     setTimeout(() => tempData.loadMore = true, 500);
+
+    // update dropdown
+    document.multiselect("#courseIds").deselectAll();
 }
 
 /*-------------------------------------------------------------------------------------------------------
