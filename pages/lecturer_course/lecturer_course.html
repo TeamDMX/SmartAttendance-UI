@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
+	<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
+	<link rel="stylesheet" href="../../libs/datatable/datatable.css">
+	<link rel="stylesheet" href="../../libs/multiselectjs/multiselect.css">
+	<script src="../../libs/multiselectjs/multiselect.js"></script>
+	<title>Manage Lecture Halls</title>
+
+	<style>
+		#courseIds_multiSelect {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body class="darkbg">
+	<div class="container containerpadding">
+		<div class="row rowpadding">
+
+			<div class="col-sm">
+				<div class="jumbotron  paddingJump activebg jumbotronpadding">
+					<ul class="nav nav-tabs">
+						<li class="active "><a data-toggle="tab" class="btn btn-info customtab active" href="#tabTable"
+								id="tabTableTitle">Lectures</a>
+						</li>
+						<li><a id="tabAdd" data-toggle="tab" href="#tabForm" class="btn btn-info customtab" id="tabFormTitle">Add
+								New</a></li>
+						<li><a id="tabUpdate" style="display: none;" data-toggle="tab" class="btn btn-info customtab">Update
+								Entry</a></li>
+
+					</ul>
+					<div class="tab-content">
+
+						<div class="form-group mt-4">
+							<label class="textWhite">Course: </label>
+							<select class="form-control" id="tableCourseId" name="tableCourseId">
+								<option value="">Manga</option>
+							</select>
+						</div>
+						
+						<div id="tabTable" class="container tab-pane active" style="padding: 0;">
+							<div id="mainTableHolder" style="margin-top:30px">
+
+							</div>
+						</div>
+
+						<div id="tabForm" class="container tab-pane fade lowmargin">
+
+
+							<form id="mainForm" style="margin-top: 40px;">
+
+								<div class="form-group">
+									<label class="textWhite">Registration Number: </label>
+									<input type="text" class="form-control" id="regNumber" name="regNumber">
+								</div>
+
+								<div class="form-group">
+									<label class="textWhite">Index Number: </label>
+									<input type="text" class="form-control" id="indexNumber" name="indexNumber">
+								</div>
+
+
+								<div class="form-group">
+									<label class="textWhite">Name: </label>
+									<input type="text" class="form-control" id="name" name="name">
+								</div>
+
+								<div class="form-group" style="margin-bottom: 30px;">
+									<label class="textWhite">Courses: </label>
+									<select class="form-control" id="courseIds" name="courseIds" multiple>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+									</select>
+								</div>
+
+
+								<div class="text-right">
+									<div class="row">
+										<div class="col-sm">
+											<button id="btnFmAdd" type="button" class="btn btnwidth marginbtn bgyellow1">
+												<i class="fa fa-check"></i>&nbsp; Add
+											</button>
+										</div>
+
+										<div class="col-sm">
+											<button id="btnFmUpdate" type="button" class="btn btnwidth marginbtn btn-info">
+												<i class="fa fa-pencil-square-o"></i>&nbsp; Update
+											</button>
+										</div>
+
+										<div class="col-sm">
+											<button id="btnFmDelete" type="button" class="btn btnwidth marginbtn btn-danger">
+												<i class="fa fa-trash-o"></i>&nbsp; Delete
+											</button>
+										</div>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<script src="../../libs/jquery/jquery.js"></script>
+	<script src="../../libs/popper/popper.js"></script>
+	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
+	<script src="../../assets/js/common.js"></script>
+	<script src="../../libs/datatable/datatable.js"></script>
+
+	<script src="./lecturer_course.js"></script>
+</body>
+
+</html>
