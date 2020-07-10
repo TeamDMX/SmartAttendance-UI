@@ -74,16 +74,20 @@ const getInitialTableData = async () => {
     const courseId = $("#tableCourseId").val();
 
     // get initial entries from the server
-    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures`, "GET");
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/search/ /skip/0`, "GET");
 
     // convert response data to data table format
     return getTableData(response.data);
 }
 
-const searchEntries = async (searchValue) => {
+// search function disabled until backed query builder issue is resolved
+const searchEntries = async (searchValue, rowsCount) => {
+    const lecturerId = tempData.profile.lecturer.id;
+    const courseId = $("#tableCourseId").val();
+
     if (searchValue.trim() == "") searchValue = " "
 
-    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/0`, "GET");
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/search/${searchValue}/skip/${rowsCount}`, "GET");
 
     const tableData = getTableData(response.data);
 
@@ -98,7 +102,7 @@ const loadMoreEntries = async (searchValue, rowsCount) => {
 
     if (searchValue.trim() == "") searchValue = " ";
 
-    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/${rowsCount}`, "GET");
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/search/ /skip/${rowsCount}`, "GET");
 
     // if results came empty (all loaded)
     if (response.data.length == 0) {
@@ -262,8 +266,12 @@ const addEntry = async () => {
 }
 
 const editEntry = async (id = mainTable.selectedEntryId) => {
+    const lecturerId = tempData.profile.lecturer.id;
+    const courseId = $("#tableCourseId").val();
+
     // get entry data from db and show in the form
-    const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "GET");
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/${id}`);
+
     const entry = response.data;
 
     // change tab to form
@@ -273,9 +281,8 @@ const editEntry = async (id = mainTable.selectedEntryId) => {
     window.tempData.selectedEntry = entry;
 
     // fill form inputs
-    $("#regNumber").val(entry.regNumber);
-    $("#indexNumber").val(entry.indexNumber);
-    $("#name").val(entry.name);
+    $("#code").val(entry.code);
+    $("#startDatetime").val(entry.startDatetime);
 
     $("#tabUpdate").show();
     $("#tabUpdate").tab("show");
@@ -326,7 +333,7 @@ const updateEntry = async () => {
     newEntryObj.id = tempData.selectedEntry.id;
 
     // send put reqeust to update data
-    const response = await Request.send(`${tempData.mainEndPoint}/${newEntryObj.id}`, "PUT", { data: newEntryObj });
+    const response = await Request.send(`${ tempData.mainEndPoint } / ${ newEntryObj.id }`, "PUT", { data: newEntryObj });
 
     // show output modal based on response
     if (response.status) {
@@ -342,7 +349,7 @@ const deleteEntry = async (id = mainTable.selectedEntryId) => {
     const confirmation = window.confirm("Do you really need to delete this entry?");
 
     if (confirmation) {
-        const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "DELETE");
+        const response = await Request.send(`${ tempData.mainEndPoint } / ${ id }`, "DELETE");
         if (response.status) {
             mainWindow.showOutputModal("Success!", response.msg);
             tempData.selectedEntry = undefined
