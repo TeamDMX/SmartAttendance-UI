@@ -49,13 +49,13 @@ class DataTable {
     $(`#${parentId}`).append(`
       <div id="${parentId}-dt-wrapper" style="">
         <div style="margin-bottom: 10px;">
-          <button id="${parentId}-dt-btnEdit" onclick="editEntry()" class="btn btn-success custombtn" style="display:none">
+          <button id="${parentId}-dt-btnEdit" onclick="editEntry()" class="btn btn-success dt-action-btn" style="display:none">
             <i class="fa fa-pencil-square-o"></i> 
           </button>
-          <button id="${parentId}-dt-btnDelete" onclick="deleteEntry()" class="btn btn-danger custombtn" style="display:none">
+          <button id="${parentId}-dt-btnDelete" onclick="deleteEntry()" class="btn btn-danger dt-action-btn" style="display:none">
             <i class="fa fa-trash-o"></i> 
           </button>
-          <div class="float-right lowmargin widthmd">
+          <div class="float-right widthmd mb-3">
             <input type="text" id="${parentId}-dt-search" class="form-control" placeholder="Search..">
           </div>
         </div>

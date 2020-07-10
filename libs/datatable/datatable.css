@@ -38,3 +38,10 @@
 .dt-row-selected {
   background-color: #eea942;
 }
+
+.dt-action-btn {
+  height: 35px;
+  width: 100px;
+  font-size: 1em;
+  margin: 2px;
+}
