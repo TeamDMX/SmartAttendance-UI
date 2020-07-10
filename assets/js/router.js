@@ -86,6 +86,10 @@ const getRoutes = () => {
             title: "User View",
             path: "./pages/user/user.html"
         },
+        "lecture_hall": {
+            title: "Lecture Hall View",
+            path: "./pages/lecture_hall/lecture_hall.html"
+        },
         "noauth": {
             title: "Auth Failure",
             path: "./pages/noauth.html"
