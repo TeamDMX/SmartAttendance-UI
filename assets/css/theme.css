@@ -1,36 +1,43 @@
+/* yellow hr*/
 hr {
   color: #edac28;
   background-color: #edac28;
 }
-
+/* background style for main content (main background)*/
 .darkbg {
   background-color: #2d3038;
 }
 
+/* background style for active area */
 .activebg {
   background-color: #3e3e48;
 }
 
+/* navigation bar*/
 .customnav {
   border: 1px none;
   padding: 10px;
   box-shadow: 1px 1px 5px 1px #3e3d48;
   background-color: #e5b02e;
 }
+/* title text* (removed)*/
 .header {
   font-size: 1.5em;
   margin-top: 1%;
   margin-bottom: 3%;
 }
-
+ /* padding for jumbotron container*/
 .jumbotronpadding {
   padding-bottom: 80px;
 }
 
+/* stat card updated time */
 .updatestatus {
   font-size: 0.7em;
   margin-top: 0.1%;
 }
+
+/* <textarea>  dark background */
 .textareabg {
   background-color: #2d3038;
   border: 0px;
@@ -43,27 +50,37 @@ hr {
   border: solid #deb432 1px;
   box-shadow: 0.5px 0.5px 5px 0.5px #deb432;
 }
+
+/* padding for rows*/
 .rowpadding {
   margin-top: 60px;
 }
+/* buttom margin*/
 .btnmargin-top {
   margin-top: 20px;
 }
+
+/* yallow background for cards*/
 .bgyellow1 {
   background-color: #e5b02e;
 }
+/*container padding*/
 .containerpadding {
   padding-top: 20px;
 }
 
+/* stat card font bold (not in use)*/
 .statcard {
   font-weight: 400;
 }
+
+/* stat card background (not in use) */
 .statcardbg {
   width: 100%;
   background-image: linear-gradient(to left, #deb432, #e5b02e);
 }
 
+/* text fields*/
 input[type="text"] {
   background-color: #2f3038;
   color: white;
@@ -89,6 +106,7 @@ input[type="password"]:focus {
   border: solid #deb432 1px;
   box-shadow: 0.5px 0.5px 5px 0.5px #deb432;
 }
+/* edit, delete button in the table*/
 .custombtn {
   height: 35px;
   width: 100px;
@@ -96,24 +114,29 @@ input[type="password"]:focus {
   margin: 2px;
 }
 
+/*table header row*/
 .tablehead {
   background-color: #e5b02e;
   border-radius: 10px;
   color:#2d3038;
 }
 
+/*table content*/
 .customtable {
   width: 100%;
   background-color: #2e3038;
   border-radius: 10px;
   color: white;
 }
+
+
 .selectdark {
   background-color: #2f3038;
   border: 0px;
   color: white;
 }
 
+/*shadow for cards*/
 .shadowonly {
   border: 0px none;
   padding: 10px;
@@ -244,6 +267,7 @@ li{
   margin: 5px;
 }
 
+/* dashbaord card effects*/
 .cardeffects{
  
   animation-duration: 1s;
