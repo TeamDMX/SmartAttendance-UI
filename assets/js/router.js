@@ -90,6 +90,10 @@ const getRoutes = () => {
             title: "Lecture Hall View",
             path: "./pages/lecture_hall/lecture_hall.html"
         },
+        "lecturer_course": {
+            title: "My Lectures View",
+            path: "./pages/lecturer_course/lecturer_course.html"
+        },
         "noauth": {
             title: "Auth Failure",
             path: "./pages/noauth.html"

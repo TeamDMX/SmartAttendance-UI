@@ -28,7 +28,8 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <!--Activated-->
-          <a class="nav-link" href=""><b onclick="loadRoute('dashboard');">Smart Attendance</b> | <span id="lblNavTitle"></span></a>
+          <a class="nav-link" href=""><b onclick="loadRoute('dashboard');">Smart Attendance</b> | <span
+              id="lblNavTitle"></span></a>
           <!-- Replace your action text here-->
         </li>
 
@@ -162,6 +163,9 @@
 
         // get data from the response
         const data = response.data;
+
+        // save profile on temp data
+        tempData.profile = data;
 
         // update ui
 
