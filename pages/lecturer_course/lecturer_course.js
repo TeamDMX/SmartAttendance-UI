@@ -47,6 +47,9 @@ async function loadModule(permissionStr) {
 
 
     await loadMainTable();
+
+    // load date timepicker
+    $("#startDatetime").datetimepicker();
 }
 
 // reload main table data and from after making a change
@@ -74,7 +77,8 @@ const getInitialTableData = async () => {
     const courseId = $("#tableCourseId").val();
 
     // get initial entries from the server
-    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/search/ /skip/0`, "GET");
+    let response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/search/ /skip/0`, "GET");
+
 
     // convert response data to data table format
     return getTableData(response.data);
@@ -139,7 +143,7 @@ const getTableData = (responseData) => {
             "entryId": entry.id,
             "Code": entry.code,
             "Leclure Hall": entry.lectureHall.name,
-            "At": entry.startDatetime,
+            "At": moment(entry.startDatetime).format("YYYY/MM/DD HH:mm"),
             "Lecture Status": entry.lectureStatus.name,
         }
     });
@@ -193,15 +197,35 @@ const registerEventListeners = () => {
 const loadFormDropdowns = async () => {
     const lecturerId = tempData.profile.lecturer.id;
     // get courses
-    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses`);
+    let response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses`);
     const lecturerCourses = response.data;
 
+    // get lecture halls
+    response = await Request.send(`/api/general/lecture_hall`);
+    const lectureHalls = response.data;
+
+    // get lecture status
+    response = await Request.send(`/api/general/lecture_status`);
+    const lectureStatus = response.data;
+
     $("#tableCourseId").empty();
+    $("#courseId").empty();
+    $("#lectureHallId").empty();
+    $("#lectureStatusId").empty();
 
     // populate select inputs with data
     lecturerCourses.forEach(lc => {
         const course = lc.course;
         $("#tableCourseId").append(`<option value="${course.id}">(${course.code}) ${course.name}</option>`);
+        $("#courseId").append(`<option value="${course.id}">(${course.code}) ${course.name}</option>`);
+    });
+
+    lectureHalls.forEach(lh => {
+        $("#lectureHallId").append(`<option value="${lh.id}">(${lh.code}) ${lh.name}</option>`);
+    });
+
+    lectureStatus.forEach(ls => {
+        $("#lectureStatusId").append(`<option value="${ls.id}">${ls.name}</option>`);
     });
 
 }
@@ -255,10 +279,15 @@ const addEntry = async () => {
         return;
     }
 
-    // get response
-    const response = await Request.send(tempData.mainEndPoint, "POST", { data: data });
+    const lecturerId = tempData.profile.lecturer.id;
 
-    // show output modal based on response
+    // change date time to iso string
+    // data.startDatetime = new Date(data.startDatetime).toISOString();
+
+    // get response
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/lectures`, "POST", { data: data });
+
+    // // show output modal based on response
     if (response.status) {
         mainWindow.showOutputModal("Success!", response.msg);
         reloadModule();
@@ -282,14 +311,15 @@ const editEntry = async (id = mainTable.selectedEntryId) => {
 
     // fill form inputs
     $("#code").val(entry.code);
-    $("#startDatetime").val(entry.startDatetime);
+    $("#startDatetime").val(moment(entry.startDatetime).format("YYYY/MM/DD HH:mm"));
 
     $("#tabUpdate").show();
     $("#tabUpdate").tab("show");
 
-    entry.studentCourses.forEach(lc => {
-        document.multiselect("#tableCourseIds").select(lc.courseId);
-    });
+    // select dropdown values
+    FormUtil.selectDropdownOptionByValue("courseId", entry.courseId);
+    FormUtil.selectDropdownOptionByValue("lectureHallId", entry.lectureHallId);
+    FormUtil.selectDropdownOptionByValue("lectureStatusId", entry.lectureStatusId);
 
     // show buttons
     setFormButtionsVisibility("edit");
@@ -331,9 +361,10 @@ const updateEntry = async () => {
 
     // set id of the newEntry object
     newEntryObj.id = tempData.selectedEntry.id;
-
+    newEntryObj.lecturerId = tempData.selectedEntry.lecturerId;
+    
     // send put reqeust to update data
-    const response = await Request.send(`${ tempData.mainEndPoint } / ${ newEntryObj.id }`, "PUT", { data: newEntryObj });
+    const response = await Request.send(`${tempData.mainEndPoint}/${newEntryObj.lecturerId}/lectures/${newEntryObj.id}`, "PUT", { data: newEntryObj });
 
     // show output modal based on response
     if (response.status) {
@@ -348,8 +379,10 @@ const updateEntry = async () => {
 const deleteEntry = async (id = mainTable.selectedEntryId) => {
     const confirmation = window.confirm("Do you really need to delete this entry?");
 
+    const lecturerId = tempData.profile.lecturer.id;
+
     if (confirmation) {
-        const response = await Request.send(`${ tempData.mainEndPoint } / ${ id }`, "DELETE");
+        const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/lectures/${id}`, "DELETE");
         if (response.status) {
             mainWindow.showOutputModal("Success!", response.msg);
             tempData.selectedEntry = undefined
