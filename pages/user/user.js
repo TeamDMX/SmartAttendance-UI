@@ -121,6 +121,8 @@ const formTabClick = async () => {
     $("#tabUpdate").hide();
 
     document.multiselect("#roleIds").deselectAll();
+
+    setUserType("lec");
 }
 
 const getTableData = (responseData) => {
@@ -222,6 +224,14 @@ const loadFormDropdowns = async () => {
 const validateForm = async () => {
     let errors = "";
     const entry = {};
+
+    if ($("#lecCode").val().trim() == "") {
+        $("#lecCode").val("null");
+    }
+
+    if ($("#stuRegNumber").val().trim() == "") {
+        $("#stuRegNumber").val("null");
+    }
 
     // Loop through validation info items (vi) and check it's value using regexes
     for (let vi of tempData.validationInfo) {
