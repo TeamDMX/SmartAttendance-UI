@@ -53,7 +53,7 @@ const reloadModule = async () => {
     setTimeout(() => tempData.loadMore = true, 500);
 
     // update dropdown
-    document.multiselect("#courseIds").deselectAll();
+    document.multiselect("#roleIds").deselectAll();
 }
 
 /*-------------------------------------------------------------------------------------------------------
@@ -128,7 +128,7 @@ const getTableData = (responseData) => {
         return {
             "entryId": entry.id,
             "E-Mail": entry.email,
-            "Type": (entry.student ) ? "Student" : (entry.lecturer) ? "Lecturer" : "Other",
+            "Type": (entry.student) ? "Student" : (entry.lecturer) ? "Lecturer" : "Other",
             "Roles": roles.toString()
         }
     });
@@ -163,6 +163,24 @@ const registerEventListeners = () => {
         $(".nav-tabs a[href='#tabTable']").click();
     });
 
+
+    // for radio buttons to show hide relavant info
+    $("#userTypeStu").on("change", function () {
+        if ($(this).prop("checked", true)) {
+            $("#fgLecCode").hide();
+            $("#fgStuRegNumber").fadeIn();
+        }
+    });
+
+    $("#userTypeLec").on("change", function () {
+        if ($(this).prop("checked", true)) {
+            $("#fgStuRegNumber").hide();
+            $("#fgLecCode").fadeIn();
+        }
+    });
+
+    $("#userTypeLec").attr("checked", true);
+
     // catch promise rejections
     $(window).on("unhandledrejection", (event) => {
         console.error("Unhandled rejection (promise: ", event.promise, ", reason: ", event.reason, ").");
@@ -170,19 +188,19 @@ const registerEventListeners = () => {
 }
 
 const loadFormDropdowns = async () => {
-    // get courses
-    const response = await Request.send("/api/general/course");
-    const courses = response.data;
+    // get roles
+    const response = await Request.send("/api/general/role");
+    const roles = response.data;
 
-    $("#courseIds").empty();
+    $("#roleIds").empty();
 
     // populate select inputs with data
-    courses.forEach(course => {
-        $("#courseIds").append(`<option value="${course.id}">(${course.code}) ${course.name}</option>`);
+    roles.forEach(role => {
+        $("#roleIds").append(`<option value="${role.id}">${role.name}</option>`);
     });
 
     // enable muti select plugin
-    document.multiselect('#courseIds');
+    document.multiselect('#roleIds');
 }
 
 const validateForm = async () => {
@@ -265,10 +283,10 @@ const editEntry = async (id = mainTable.selectedEntryId) => {
 
 
     // update dropdown
-    document.multiselect("#courseIds").deselectAll();
+    document.multiselect("#roleIds").deselectAll();
 
     entry.studentCourses.forEach(lc => {
-        document.multiselect("#courseIds").select(lc.courseId);
+        document.multiselect("#roleIds").select(lc.courseId);
     });
 
     // show buttons

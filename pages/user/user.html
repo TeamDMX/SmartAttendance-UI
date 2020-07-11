@@ -16,7 +16,7 @@
 	<title>Manage Lecture Halls</title>
 
 	<style>
-		#courseIds_multiSelect {
+		#roleIds_multiSelect {
 			width: 100%;
 		}
 	</style>
@@ -54,24 +54,46 @@
 							<form id="mainForm" style="margin-top: 40px;">
 
 								<div class="form-group">
-									<label class="textWhite">Registration Number: </label>
-									<input type="text" class="form-control" id="regNumber" name="regNumber">
+									<label class="textWhite">E-Mail: </label>
+									<input type="text" class="form-control" id="email" name="email">
 								</div>
 
 								<div class="form-group">
-									<label class="textWhite">Index Number: </label>
-									<input type="text" class="form-control" id="indexNumber" name="indexNumber">
+									<label class="textWhite">User Type: </label>
+									<div>
+										<div class="form-check-inline">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="optUserType"
+													id="userTypeLec"><span class="textWhite">Lecturer</span>
+											</label>
+										</div>
+										<div class="form-check-inline">
+											<label class="form-check-label">
+												<input type="radio" class="form-check-input" name="optUserType"
+													id="userTypeStu"><span class="textWhite">Student</span>
+											</label>
+										</div>
+									</div>
 								</div>
 
+								<div class="form-group" id="fgLecCode">
+									<label class="textWhite">Lecturer Code: </label>
+									<input type="text" class="form-control" id="lecCode" name="lecCode">
+								</div>
+
+								<div class="form-group" id="fgStuRegNumber" style="display: none;">
+									<label class="textWhite">Student Registration Number: </label>
+									<input type="text" class="form-control" id="stuRegNumber" name="stuRegNumber">
+								</div>
 
 								<div class="form-group">
-									<label class="textWhite">Name: </label>
-									<input type="text" class="form-control" id="name" name="name">
+									<label class="textWhite">Password: </label>
+									<input type="text" class="form-control" id="password" name="password">
 								</div>
 
 								<div class="form-group" style="margin-bottom: 30px;">
-									<label class="textWhite">Courses: </label>
-									<select class="form-control" id="courseIds" name="courseIds" multiple>
+									<label class="textWhite">Roles: </label>
+									<select class="form-control" id="roleIds" name="roleIds" multiple>
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
