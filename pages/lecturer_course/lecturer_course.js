@@ -216,12 +216,12 @@ const loadFormDropdowns = async () => {
     // populate select inputs with data
     lecturerCourses.forEach(lc => {
         const course = lc.course;
-        $("#tableCourseId").append(`<option value="${course.id}">(${course.code}) ${course.name}</option>`);
-        $("#courseId").append(`<option value="${course.id}">(${course.code}) ${course.name}</option>`);
+        $("#tableCourseId").append(`<option value="${course.id}">${course.code} - ${course.name}</option>`);
+        $("#courseId").append(`<option value="${course.id}">${course.code} - ${course.name}</option>`);
     });
 
     lectureHalls.forEach(lh => {
-        $("#lectureHallId").append(`<option value="${lh.id}">(${lh.code}) ${lh.name}</option>`);
+        $("#lectureHallId").append(`<option value="${lh.id}">${lh.code} - ${lh.name}</option>`);
     });
 
     lectureStatus.forEach(ls => {
@@ -362,7 +362,7 @@ const updateEntry = async () => {
     // set id of the newEntry object
     newEntryObj.id = tempData.selectedEntry.id;
     newEntryObj.lecturerId = tempData.selectedEntry.lecturerId;
-    
+
     // send put reqeust to update data
     const response = await Request.send(`${tempData.mainEndPoint}/${newEntryObj.lecturerId}/lectures/${newEntryObj.id}`, "PUT", { data: newEntryObj });
 
