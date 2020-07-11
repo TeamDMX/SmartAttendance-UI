@@ -119,6 +119,8 @@ const formTabClick = async () => {
 
     // hide update tab
     $("#tabUpdate").hide();
+
+    document.multiselect("#roleIds").deselectAll();
 }
 
 const getTableData = (responseData) => {
@@ -185,6 +187,20 @@ const registerEventListeners = () => {
     $(window).on("unhandledrejection", (event) => {
         console.error("Unhandled rejection (promise: ", event.promise, ", reason: ", event.reason, ").");
     });
+}
+
+// change visiblity of student/lecturer related fields
+const setUserType = (userType) => {
+    if (userType == "stu") {
+        $("#userTypeStu").prop("checked", true);
+        $("#fgLecCode").hide();
+        $("#fgStuRegNumber").fadeIn();
+    }
+    if (userType == "lec") {
+        $("#userTypeLec").prop("checked", true);
+        $("#fgStuRegNumber").hide();
+        $("#fgLecCode").fadeIn();
+    }
 }
 
 const loadFormDropdowns = async () => {
@@ -274,9 +290,17 @@ const editEntry = async (id = mainTable.selectedEntryId) => {
     window.tempData.selectedEntry = entry;
 
     // fill form inputs
-    $("#regNumber").val(entry.regNumber);
-    $("#indexNumber").val(entry.indexNumber);
-    $("#name").val(entry.name);
+    $("#email").val(entry.email);
+
+    if (entry.lecturer) {
+        $("#userTypeLec").prop("checked", true);
+        $("#lecCode").val(entry.lecturer.code);
+        setUserType("lec");
+    } else {
+        $("#userTypeStu").prop("checked", true);
+        $("#stuRegNumber").val(entry.student.regNumber);
+        setUserType("stu");
+    }
 
     $("#tabUpdate").show();
     $("#tabUpdate").tab("show");
@@ -285,8 +309,8 @@ const editEntry = async (id = mainTable.selectedEntryId) => {
     // update dropdown
     document.multiselect("#roleIds").deselectAll();
 
-    entry.studentCourses.forEach(lc => {
-        document.multiselect("#roleIds").select(lc.courseId);
+    entry.userRoles.forEach(ur => {
+        document.multiselect("#roleIds").select(ur.role.id);
     });
 
     // show buttons
