@@ -1,11 +1,12 @@
+window.tempData = { lecturerId: null, lectureId: null };
+
 $(document).ready(() => {
     init();
 });
 
-const init = async() => {
+const init = async () => {
     const lectureId = getParameterByName("lectureId");
     const lecturerId = getParameterByName("lecturerId");
-    const courseId = getParameterByName("courseId");
 
     // get lecture info
     const response = await Request.send(`/api/lecturers/${lecturerId}/lectures/${lectureId}`);
@@ -14,6 +15,9 @@ const init = async() => {
         window.location = "./lecturer_course.html";
         return;
     }
+
+    tempData.lecturerId = lecturerId;
+    tempData.lectureId = lectureId;
 
     // lecture details
     const entry = response.data;
@@ -46,7 +50,7 @@ const init = async() => {
         console.log(data);
     });
 
-    socket.on('newMarking', function (data) {        
+    socket.on('newMarking', function (data) {
         const jdata = JSON.parse(data);
         const student = jdata.student;
         $("#liveMarkingList").prepend(`<span class="badge badge-success">${student.indexNumber} marked as present</span>
@@ -58,8 +62,29 @@ const init = async() => {
         console.log(data);
     });
 
+    $("#btnFinishMarking").on("click", finishMarking);
+    $("#btnCancelMarking").on("click", cancelMarking);
 }
 
+const cancelMarking = async () => {
+    const con = window.confirm("Do you really want to cancel this session?");
+    if (con) {
+        const response = await Request.send(`/api/lecturers/${tempData.lecturerId}/lectures/${tempData.lectureId}/attendances/cancel`);
+        if (response.status) {
+            window.location = "./lecturer_course.html";
+        }
+    }
+}
+
+const finishMarking = async () => {
+    const con = window.confirm("Do you really want to finish this session?");
+    if (con) {
+        const response = await Request.send(`/api/lecturers/${tempData.lecturerId}/lectures/${tempData.lectureId}/attendances/finish`);
+        if (response.status) {
+            window.location = "./lecturer_course.html";
+        }
+    }
+}
 
 const getParameterByName = (name, url = window.location.href) => {
     name = name.replace(/[\[\]]/g, '\\$&');
