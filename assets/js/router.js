@@ -36,7 +36,12 @@ const updateRouteInfo = () => {
     // proceed with title update
     let routes = getRoutes();
     routes = Object.values(routes).filter(route => route.path == path);
-    $("#lblNavTitle").text(routes[0].title);
+
+    if (routes[0]) {
+        $("#lblNavTitle").text(routes[0].title);
+    } else {
+        path.indexOf("view_qr.html") != -1 ? $("#lblNavTitle").text("Mark Attendance") : "Unknown";
+    }
 
     // public data for iframe access
     const mainWindowData = {
