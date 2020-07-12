@@ -154,7 +154,7 @@ class DataTable {
   registerRowClickEvents() {
     $(`#${this.parentId}-dt-tbody tr`).click((e) => {
       const currentRow = $(e.target).parent();
-
+      if (currentRow.html().indexOf("td") == -1) return;
       if (currentRow.hasClass("dt-row-selected")) {
         currentRow.removeClass("dt-row-selected");
         this.selectedEntryId = undefined;
