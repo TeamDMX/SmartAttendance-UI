@@ -1,93 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-<head>
+    <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="./assets/css/theme.css" type="text/css" />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+  </head>
 
+  <body class="darkbg">
+    <!--Navbar starts here-->
 
-  <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="./assets/css/theme.css" type="text/css">
+    <!--modal-->
 
-  <title>Login </title>
+    <div class="modal fade" id="modalOutput">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
 
-</head>
+          <!-- Modal body -->
+          <div class="modal-body" id="modalOutputBody"></div>
 
-<body class="darkbg">
-  <!--Navbar starts here-->
-
-<!--modal-->
-
-<div class="modal fade" id="modalOutput">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body" id="modalOutputBody">
-
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-  <div class="container">
-
-    <div class="row" style="margin-top: 60px;">
-      <div class="col-sm"></div>
-      <div class="col-sm">
-
-        <div class="jumbotron shadowonly activebg jumbotronpadding paddingJump mx-auto">
-          <h6 class="display-4 textWhite" style="font-size: 1.5em;"> Login</h6>
-          <hr style="color: white; background-color: white;">
-          <form>
-
-
-
-            <div class="form-group">
-              <label class="textWhite">Username</label>
-              <input type="text" class="form-control" id="" value="">
-            </div>
-
-            <div class="form-group ">
-              <label class="textWhite">Password</label>
-              <input type="password" class="form-control" id="" value="">
-            </div>
-
-            <div class="text-right">
-              <button type="button" class="btn  col-md-3 bgyellow1 btnmargin-top">Login</button>
-            </div>
-
-
-          </form>
-
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Close
+            </button>
+          </div>
         </div>
       </div>
-
-      <div class="col-sm"></div>
     </div>
-    <p class="text-center textWhite">Smart QR Attendance System. <br>By</p>
-    <div class="text-center"><img src="assets/images/tdmxlogo.png" class="logo">
+
+    <div class="container">
+      <div class="row" style="margin-top: 60px;">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+          <div
+            class="jumbotron shadowonly activebg jumbotronpadding paddingJump mx-auto"
+          >
+            <h6 class="display-4 textWhite" style="font-size: 1.5em;">Login</h6>
+            <hr style="color: white; background-color: white;" />
+            <form>
+              <div class="form-group">
+                <label class="textWhite">Username</label>
+                <input type="text" class="form-control" id="" value="" />
+              </div>
+
+              <div class="form-group">
+                <label class="textWhite">Password</label>
+                <input type="password" class="form-control" id="" value="" />
+              </div>
+
+              <div class="text-right">
+                <button
+                  type="button"
+                  class="btn col-md-3 bgyellow1 btnmargin-top"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-sm"></div>
+      </div>
+      <p class="text-center textWhite">Smart QR Attendance System. <br />By</p>
+      <div class="text-center">
+        <img src="assets/images/tdmxlogo.png" class="logo" />
+      </div>
     </div>
-  </div>
 
-  <script src="./libs/jquery/jquery.js"></script>
-  <script src="./libs/popper/popper.js"></script>
-  <script src="./libs/bootstrap/js/bootstrap.js"></script>
-</body>
-
+    <script src="./libs/jquery/jquery.js"></script>
+    <script src="./libs/popper/popper.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.js"></script>
+  </body>
 </html>
