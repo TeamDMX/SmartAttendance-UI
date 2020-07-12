@@ -19,76 +19,11 @@
 </head>
 
 <body class="darkbg">
-  <!--Navbar starts here.-->
-
-
-  <nav class="navbar navbar-expand-lg navbar-dark customnav">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <!--Activated-->
-          <a class="nav-link" href="#">Action Here <span class="sr-only">(current)</span></a>
-          <!-- Replace your action text here-->
-        </li>
-
-
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-
-        <a class="nav-link" href="#" style="color: beige;">
-          <i class="fa fa-bell">
-            <span class="badge badge-danger">11</span>
-          </i>
-
-        </a>
-
-
-
-        <a class="nav-link" href="#" style="color: beige;" data-toggle="modal" data-target="#options">
-          <a class="navbar-brand" href="#" data-toggle="modal" data-target="#options">
-            <img src="assets/images/user.svg" width="30" data-toggle="modal" data-target="#options" height="30" alt=""
-              loading="lazy"> &nbsp; Username
-          </a>
-
-        </a>
-      </form>
-
-    </div>
-  </nav>
-
-  <!--end of navbar-->
-  <div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered " role="document">
-      <div class="modal-content activebg">
-        <div class="modal-header">
-          <h5 class="modal-title textWhite" id="exampleModalLabel">Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <button class="btn statcardbg marginbtn">Change Password </button>
-          <button class="btn statcardbg marginbtn"> Logout</button>
-        </div>
-        <div class="modal-footer">
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--end of navbar-->
 
   <div class="container">
     <div class="row">
       <div class="col-sm">
+        <button class="btn btn-warning btn-lg margintop50">Finish Session</button>
         <button class="btn btn-danger btn-lg margintop50">Cancel Session</button>
       </div>
     </div>
@@ -107,14 +42,13 @@
 
           <div class="card-body">
             <h5 class="card-title">Scan this QR to mark the attendance</h5>
-            <p class="card-text">Course: Web Application Development</p>
-            <p class="card-text">Lecture: Lecture 01 - 20/05/2020</p>
-
+            <p class="card-text">Course: <span id="lblCourseName">Web Application Development</span></p>
+            <p class="card-text">Lecture: <span id="lblLecCode"></span> - <span id="lblLecDatetime">20/05/2020</span>
+            </p>
           </div>
         </div>
         <div class="card ">
-
-          <div class="card-body" style="overflow: scroll; ">
+          <div class="card-body" style="overflow: scroll;" id="liveMarkingList">
             <span class="badge badge-success">ICT/18/814 marked as present</span>
             <p class=" marktext">8.00 AM</p>
 
@@ -151,6 +85,7 @@
     <script src="../../libs/popper/popper.js"></script>
     <script src="../../libs/bootstrap/js/bootstrap.js"></script>
     <script src="../../assets/js/common.js"></script>
+    <script src="../../libs/moment/moment.js"></script>
 
     <script src="./view_qr.js"></script>
 </body>

@@ -160,7 +160,7 @@ const startMarking = async (lectureId) => {
     const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/lectures/${lectureId}/check`, "GET");
 
     if (response.status == true) {
-        window.location = `./view_qr.html?lectureId=${lectureId}`
+        window.location = `./view_qr.html?lectureId=${lectureId}&lecturerId=${lecturerId}`
     }
 }
 
@@ -306,10 +306,9 @@ const addEntry = async () => {
 
 const editEntry = async (id = mainTable.selectedEntryId) => {
     const lecturerId = tempData.profile.lecturer.id;
-    const courseId = $("#tableCourseId").val();
 
     // get entry data from db and show in the form
-    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/courses/${courseId}/lectures/${id}`);
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/lectures/${id}`);
 
     const entry = response.data;
 
