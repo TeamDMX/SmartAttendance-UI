@@ -145,6 +145,7 @@ const getTableData = (responseData) => {
             "Leclure Hall": entry.lectureHall.name,
             "At": moment(entry.startDatetime).format("YYYY/MM/DD HH:mm"),
             "Lecture Status": entry.lectureStatus.name,
+            "Action": entry.lectureStatus.name.toLowerCase() == "pending" ? `<button class="btn btn-primary btn-sm" onclick="startMarking('${entry.id}')">Start Marking</button>` : "-"
         }
     });
 }
@@ -152,6 +153,15 @@ const getTableData = (responseData) => {
 const loadCourseLectures = async () => {
     $("#loadMainTable").empty();
     loadMainTable();
+}
+
+const startMarking = async (lectureId) => {
+    const lecturerId = tempData.profile.lecturer.id;
+    const response = await Request.send(`${tempData.mainEndPoint}/${lecturerId}/lectures/${lectureId}/check`, "GET");
+
+    if (response.status == true) {
+        window.location = `./view_qr.html?lectureId=${lectureId}`
+    }
 }
 
 /*-------------------------------------------------------------------------------------------------------
