@@ -169,32 +169,32 @@ const updateEntry = async () => {
     // new entry object
     let newEntryObj = data;
 
-    // check if any of the data in entry has changed
-    let dataHasChanged = false;
+    // // check if any of the data in entry has changed
+    // let dataHasChanged = false;
 
 
-    // when all permissions are removed
-    if (selectedEntry.privileges.length !== newEntryObj.privileges.length) {
-        dataHasChanged = true;
-    } else {
-        selectedEntry.privileges.every((p, index) => {
+    // // when all permissions are removed
+    // if (selectedEntry.privileges.length !== newEntryObj.privileges.length) {
+    //     dataHasChanged = true;
+    // } else {
+    //     selectedEntry.privileges.every((p, index) => {
 
-            if (!newEntryObj.privileges[index]) {
-                dataHasChanged = true;
-                return;
-            }
-            if (p.permission !== newEntryObj.privileges[index].permission) {
-                dataHasChanged = true;
-                return;
-            }
-        });
-    }
+    //         if (!newEntryObj.privileges[index]) {
+    //             dataHasChanged = true;
+    //             return;
+    //         }
+    //         if (p.permission !== newEntryObj.privileges[index].permission) {
+    //             dataHasChanged = true;
+    //             return;
+    //         }
+    //     });
+    // }
 
-    // if nothing has been modifed
-    if (!dataHasChanged) {
-        mainWindow.showOutputModal("Sorry!.", "You haven't changed anything to update.");
-        return;
-    }
+    // // if nothing has been modifed
+    // if (!dataHasChanged) {
+    //     mainWindow.showOutputModal("Sorry!.", "You haven't changed anything to update.");
+    //     return;
+    // }
 
     // set id of the newEntry object
     newEntryObj.id = tempData.selectedEntry.id;
