@@ -1,89 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="./assets/css/theme.css" type="text/css" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Login</title>
-  </head>
+  <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="./assets/css/theme.css" type="text/css" />
 
-  <body class="darkbg">
-    <!--Navbar starts here-->
+  <title>Login</title>
+</head>
 
-    <!--modal-->
+<body class="darkbg">
+  <!--Navbar starts here-->
 
-    <div class="modal fade" id="modalOutput">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
+  <!--modal-->
 
-          <!-- Modal body -->
-          <div class="modal-body" id="modalOutputBody"></div>
+  <div class="modal fade" id="modalOutput">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">
-              Close
-            </button>
-          </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="modalOutputBody"></div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="row" style="margin-top: 60px;">
-        <div class="col-sm"></div>
-        <div class="col-sm">
-          <div
-            class="jumbotron shadowonly activebg jumbotronpadding paddingJump mx-auto"
-          >
-            <h6 class="display-4 textWhite" style="font-size: 1.5em;">Login</h6>
-            <hr style="color: white; background-color: white;" />
-            <form>
-              <div class="form-group">
-                <label class="textWhite">Username</label>
-                <input type="text" class="form-control" id="" value="" />
-              </div>
+  <div class="container">
+    <div class="row" style="margin-top: 60px;">
+      <div class="col-sm"></div>
+      <div class="col-sm">
+        <div class="jumbotron shadowonly activebg jumbotronpadding paddingJump mx-auto">
+          <h6 class="display-4 textWhite" style="font-size: 1.5em;">Login</h6>
+          <hr style="color: white; background-color: white;" />
+          <form>
+            <div class="form-group">
+              <label class="textWhite">E-Mail: </label>
+              <input type="text" class="form-control" id="email" />
+            </div>
 
-              <div class="form-group">
-                <label class="textWhite">Password</label>
-                <input type="password" class="form-control" id="" value="" />
-              </div>
+            <div class="form-group">
+              <label class="textWhite">Password</label>
+              <input type="password" class="form-control" id="password" value="" />
+            </div>
 
-              <div class="text-right">
-                <button
-                  type="button"
-                  class="btn col-md-3 bgyellow1 btnmargin-top"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="text-right">
+              <button type="submit" class="btn col-md-3 bgyellow1 btnmargin-top">
+                Login
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <div class="col-sm"></div>
-      </div>
-      <p class="text-center textWhite">Smart QR Attendance System. <br />By</p>
-      <div class="text-center">
-        <img src="assets/images/tdmxlogo.png" class="logo" />
-      </div>
+      <div class="col-sm"></div>
     </div>
+    <p class="text-center textWhite">Smart QR Attendance System. <br />By</p>
+    <div class="text-center">
+      <img src="assets/images/tdmxlogo.png" class="logo" />
+    </div>
+  </div>
 
-    <script src="./libs/jquery/jquery.js"></script>
-    <script src="./libs/popper/popper.js"></script>
-    <script src="./libs/bootstrap/js/bootstrap.js"></script>
-  </body>
+  <script src="./libs/jquery/jquery.js"></script>
+  <script src="./libs/popper/popper.js"></script>
+  <script src="./libs/bootstrap/js/bootstrap.js"></script>
+  <script src="./assets/js/common.js"></script>
+  <script>
+    $(document).ready(() => {
+      $("form").on("submit", (e) => {
+        e.preventDefault();
+        logIn();
+      });
+    })
+
+    const showOutputModal = (title, body) => {
+      $("#modalOutputTitle").text(title);
+      $("#modalOutputBody").html("Unknown");
+      $("#modalOutputBody").html(body);
+      $("#modalOutput").modal();
+    }
+
+    const logIn = () => {
+      const options = {
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: `/api/login`,
+        data: JSON.stringify({
+          data: {
+            username: $("#email").val(),
+            password: $("#password").val()
+          }
+        }),
+        dataType: "json"
+      }
+
+      $.ajax(options).done(res => {
+        if (res.status) {
+          window.location = "./index.html";
+        } else {
+          showOutputModal("Error", res.msg);
+        }
+      }).fail(e => {
+        console.log(e);
+      });
+    }
+
+  </script>
+</body>
+
 </html>
