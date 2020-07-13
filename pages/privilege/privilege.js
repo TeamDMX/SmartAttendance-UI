@@ -174,15 +174,19 @@ const updateEntry = async () => {
 
 
     // when all permissions are removed
-    if ((selectedEntry.privileges.length > 0 && newEntryObj.privileges.length == 0) || selectedEntry.privileges.length == 0) {
+    if (selectedEntry.privileges.length !== newEntryObj.privileges.length) {
         dataHasChanged = true;
     } else {
         selectedEntry.privileges.every((p, index) => {
+
+            if (!newEntryObj.privileges[index]) {
+                dataHasChanged = true;
+                return;
+            }
             if (p.permission !== newEntryObj.privileges[index].permission) {
                 dataHasChanged = true;
-                return false;
+                return;
             }
-            return true;
         });
     }
 
