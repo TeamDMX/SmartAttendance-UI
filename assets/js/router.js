@@ -99,6 +99,10 @@ const getRoutes = () => {
             title: "My Lectures View",
             path: "./pages/lecturer_course/lecturer_course.html"
         },
+        "privilege": {
+            title: "Role Privileges View",
+            path: "./pages/privilege/privilege.html"
+        },
         "noauth": {
             title: "Auth Failure",
             path: "./pages/noauth.html"
