@@ -146,6 +146,10 @@ input[type="password"]:focus {
 .paddingJump {
   padding: 30px;
 }
+.attn-padding
+{
+  margin-top: 3em;
+}
 
 .btnprint
 {
