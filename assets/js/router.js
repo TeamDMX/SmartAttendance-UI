@@ -103,6 +103,10 @@ const getRoutes = () => {
             title: "Role Privileges View",
             path: "./pages/privilege/privilege.html"
         },
+        "attendance": {
+            title: "Student Attendance View",
+            path: "./pages/attendance/attendance.html"
+        },
         "noauth": {
             title: "Auth Failure",
             path: "./pages/noauth.html"
