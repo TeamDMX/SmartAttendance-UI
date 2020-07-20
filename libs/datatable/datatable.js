@@ -244,4 +244,22 @@ class DataTable {
       $(`#${parentId}-dt-btnDelete`).hide();
     }
   }
+
+  // filter rows for searching
+  filterRows(keyword = "") {
+    const rows = $(`#${this.parentId}-dt-tbody tr`);
+
+    if (keyword.trim() == "") {
+      rows.show();
+      return;
+    }
+
+    rows.each((i, tr) => {
+      if ($(tr).html().indexOf(keyword) > -1) {
+        $(tr).show();
+      } else {
+        $(tr).hide();
+      }
+    });
+  }
 }
