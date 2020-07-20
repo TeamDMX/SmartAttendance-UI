@@ -15,12 +15,11 @@
 </head>
 
 <body class="darkbg">
-	<div class="container containerpadding activebg attn-padding">
-		<div class=" rowpadding ">
-
+	<div class="container containerpadding activebg">
+		<div class="rowpadding">
 			<div class="form-group" style="margin-bottom: 30px;">
 				<label class="textWhite">Course: </label>
-				<select class="form-control selectdark" id="" name="" multiple>
+				<select class="form-control" id="courseId" name="courseId">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -29,23 +28,27 @@
 			</div>
 			<div class="form-group" id="fgLecCode">
 				<label class="textWhite">Student Reg No: </label>
-				<input type="text" class="form-control" id="" name="">
+				<input type="text" class="form-control" id="regNumber" name="regNumber">
 			</div>
 
 			<div class="text-center">
-				<button type="submit" class="btn col-md-3 bgyellow1 btnmargin-top">
+				<button type="submit" class="btn col-md-3 bgyellow1 btnmargin-top mb-4" id="btnShowAttendance">
 					Check Attendance
-				  </button>
-
+				</button>
 
 			</div>
 
-			
-			<h5 class="text-center display-4 textyellow rowpadding">80%</h5>
-			<p class="textWhite text-center">Percentage </p>
+			<div id="attendanceDetails" style="display: none;">
 
+				<h5 class="text-center display-4 textyellow rowpadding" id="lblAttendancePercentage">80%</h5>
+				<p class="textWhite text-center">Percentage </p>
 
-			<label class="textWhite">History: </label>
+				<label class="textWhite">History: </label>
+
+				<div id="historyTableHolder">
+
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -54,7 +57,7 @@
 	<script src="../../libs/popper/popper.js"></script>
 	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
 	<script src="../../assets/js/common.js"></script>
-
+	<script src="../../libs/moment/moment.js"></script>
 	<script src="../../libs/datatable/datatable.js"></script>
 	<script src="./attendance.js"></script>
 </body>

@@ -1,53 +1,51 @@
 /*-------------------------------------------------------------------------------------------------------
                                           Window Data
 -------------------------------------------------------------------------------------------------------*/
-window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: null };
+window.tempData = { selectedEntry: undefined, validationInfo: undefined, loadMore: true, permission: null, profile: null };
 
 // main endpoint used for requests
-tempData.mainEndPoint = "/api/lecture_halls";
+tempData.mainEndPoint = "/api/students";
 
 /*-------------------------------------------------------------------------------------------------------
                                             General
 -------------------------------------------------------------------------------------------------------*/
 
 async function loadModule(permissionStr) {
-    // get regexes for validation and store on window tempData
-    const response = await Request.send("/api/regexes/LECTURE_HALL");
-
 
     // save validation info (regexes) on global tempData
-    tempData.validationInfo = response.data;
+    tempData.validationInfo = [
+        {
+            regex: "^[\\d]+$",
+            attribute: "courseId",
+            error: "Please provide a valid course id!."
+        },
+        {
+            regex: "^[A-Z]{2}[\\d]{5}$",
+            attribute: "regNumber",
+            error: "Please provide a valid student registration number!."
+        }
+    ];
 
+    // send profile globally
+    tempData.profile = mainWindow.tempData.profile;
+
+    await loadFormDropdowns();
 
     registerEventListeners();
     FormUtil.enableRealtimeValidation(tempData.validationInfo);
 
-
     // create an array from permission string
     const permission = permissionStr.split("").map((p) => parseInt(p));
 
-    // show hide buttions based on permission
-    if (permission[0] == 0) {
-        $("#btnFmAdd").hide();
-    }
-    if (permission[2] == 0) {
-        $("#btnFmUpdate").hide();
-    }
-    if (permission[3] == 0) {
-        $("#btnFmDelete").hide();
-    }
-
     // save permission globally
     tempData.permission = permission;
-
-    await loadMainTable();
 }
 
 // reload main table data and from after making a change
 const reloadModule = async () => {
     resetForm();
     const tableData = await getInitialTableData();
-    mainTable.reload(tableData);
+    historyTable.reload(tableData);
 
     // fix for additional load more requests
     setTimeout(() => tempData.loadMore = true, 500);
@@ -56,75 +54,26 @@ const reloadModule = async () => {
 /*-------------------------------------------------------------------------------------------------------
                                             Main Table
 -------------------------------------------------------------------------------------------------------*/
-const loadMainTable = async () => {
-    const tableData = await getInitialTableData();
+const loadHistoryTable = (tableData) => {
     // load data table
-    window.mainTable = new DataTable("mainTableHolder", tableData, searchEntries, loadMoreEntries, tempData.permission);
+    window.historyTable = new DataTable("historyTableHolder", tableData, searchEntries, loadMoreEntries, tempData.permission);
 }
 
-const getInitialTableData = async () => {
-    // get initial entries from the server
-    const response = await Request.send(`${tempData.mainEndPoint}/search/ /skip/0`, "GET");
-
-    // convert response data to data table format
-    return getTableData(response.data);
-}
-
-const searchEntries = async (searchValue) => {
-    if (searchValue.trim() == "") searchValue = " "
-
-    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/0`, "GET");
-
-    const tableData = getTableData(response.data);
-
-    // load data to global main table
-    mainTable.reload(tableData);
+// search function disabled until backed query builder issue is resolved
+const searchEntries = async (searchValue, rowsCount) => {
+    historyTable.filterRows(searchValue);
 }
 
 const loadMoreEntries = async (searchValue, rowsCount) => {
 
-    // check if all data has been loaded
-    if (!tempData.loadMore) return;
-
-    if (searchValue.trim() == "") searchValue = " ";
-
-    const response = await Request.send(`${tempData.mainEndPoint}/search/${searchValue}/skip/${rowsCount}`, "GET");
-
-    // if results came empty (all loaded)
-    if (response.data.length == 0) {
-        tempData.loadMore = false;
-        return;
-    }
-
-    const tableData = getTableData(response.data);
-
-    // append to global main table
-    mainTable.append(tableData);
-}
-
-const tableTabClick = async () => {
-    // hide update tab
-    $("#tabUpdate").hide();
-}
-
-const formTabClick = async () => {
-    // when form tab is clicked, reset the form 
-    resetForm();
-
-    // show / hide proper button
-    setFormButtionsVisibility("add");
-
-    // hide update tab
-    $("#tabUpdate").hide();
 }
 
 const getTableData = (responseData) => {
-    // parse resposne data and return in data table frendly format
+    // parse resposne data and return in data table frendly format    
     return responseData.map(entry => {
         return {
-            "entryId": entry.id,
-            "Code": entry.code,
-            "Hall Name": entry.name,
+            "Marked Date": moment(entry.markedDatetime).format("YYYY/MM/DD"),
+            "Marked Time": moment(entry.markedDatetime).format("HH:mm"),
         }
     });
 }
@@ -138,29 +87,22 @@ const registerEventListeners = () => {
     // disable from submissions
     $("form").on("submit", (e) => e.preventDefault());
 
-    // register listeners for form buttons
-    $("#btnFmAdd").on("click", addEntry);
-    $("#btnFmUpdate").on("click", updateEntry);
-    $("#btnFmDelete").on("click", () => deleteEntry(tempData.selectedEntry.id));
-    $("#btnFmReset").on("click", resetForm);
-    $("#btnFmPrint").on("click", () => FormUtil.print());
+    $("#btnShowAttendance").on("click", showAttendance);
+}
 
-    //  register listeners for form tab click
-    $(".nav-tabs a[href='#tabForm']").on("click", formTabClick);
-    $(".nav-tabs a[href='#tabTable']").on("click", tableTabClick);
+const loadFormDropdowns = async () => {
+    const lecturerId = tempData.profile.lecturer.id;
+    // get courses
+    let response = await Request.send(`/api/lecturers/${lecturerId}/courses`);
+    const lecturerCourses = response.data;
 
-    // event listeners for top action buttons
-    $("#btnTopAddEntry").on("click", () => {
-        $(".nav-tabs a[href='#tabForm']").click();
-    });
+    $("#courseId").empty();
 
-    $("#btnTopViewEntry").on("click", () => {
-        $(".nav-tabs a[href='#tabTable']").click();
-    });
-
-    // catch promise rejections
-    $(window).on("unhandledrejection", (event) => {
-        console.error("Unhandled rejection (promise: ", event.promise, ", reason: ", event.reason, ").");
+    // populate select inputs with data
+    lecturerCourses.forEach(lc => {
+        const course = lc.course;
+        $("#tableCourseId").append(`<option value="${course.id}">${course.code} - ${course.name}</option>`);
+        $("#courseId").append(`<option value="${course.id}">${course.code} - ${course.name}</option>`);
     });
 }
 
@@ -183,7 +125,8 @@ const validateForm = async () => {
         if (!isValid) {
             errors += `${vi.error}<br/>`
         } else {
-            entry[elementId] = $(`#${elementId}`).val();
+            let value = $(`#${elementId}`).val();
+            entry[elementId] = Array.isArray(value) ? value.toString() : value;
         }
     }
 
@@ -202,8 +145,8 @@ const validateForm = async () => {
     };
 }
 
-// add new entry to the database
-const addEntry = async () => {
+
+const showAttendance = async () => {
     const { status, data } = await validateForm();
 
     // if there are errors
@@ -213,118 +156,26 @@ const addEntry = async () => {
     }
 
     // get response
-    const response = await Request.send(tempData.mainEndPoint, "POST", { data: data });
+    const response = await Request.send(`${tempData.mainEndPoint}/${data.regNumber}/courses/${data.courseId}/attendances`, "GET");
 
-    // show output modal based on response
-    if (response.status) {
-        mainWindow.showOutputModal("Success!", response.msg);
-        reloadModule();
-    }
-}
-
-const editEntry = async (id = mainTable.selectedEntryId) => {
-    // get entry data from db and show in the form
-    const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "GET");
-    const entry = response.data;
-
-    // change tab to form
-    $(".nav-tabs a[href='#tabForm']").tab("show");
-
-    // set entry object globally to later compare
-    window.tempData.selectedEntry = entry;
-
-    // fill form inputs
-    $("#name").val(entry.name);
-    $("#code").val(entry.code);
-
-    $("#tabUpdate").show();
-    $("#tabUpdate").tab("show");
-
-    // show buttons
-    setFormButtionsVisibility("edit");
-}
-
-// update entry in the database
-const updateEntry = async () => {
-    const { status, data } = await validateForm();
-
-    // if there are errors
-    if (!status) {
-        mainWindow.showOutputModal("Sorry!. Please fix these errors.", data);
+    if (!response.status) {
+        $("#attendanceDetails").hide();
         return;
     }
 
-    // new entry object
-    let newEntryObj = data;
+    // show percentage
+    $("#lblAttendancePercentage").text(`${response.data.percentage}%`);
 
-    // check if any of the data in entry has changed
-    let dataHasChanged = false;
+    // load history table
+    const tableData = getTableData(response.data.attendances);
 
-    for (let key in newEntryObj) {
-        // compare selected entry and edited entry values
-        try {
-            tempData.selectedEntry[key] = (tempData.selectedEntry[key] == null) ? "" : tempData.selectedEntry[key];
-            if (newEntryObj[key] !== tempData.selectedEntry[key].toString()) {
-                dataHasChanged = true;
-            }
-        } catch (error) {
-            console.log(key, error);
-        }
+    if (window.historyTable != undefined) {
+        historyTable.reload(tableData);
+    } else {
+        loadHistoryTable(tableData);
     }
 
-    // if nothing has been modifed
-    if (!dataHasChanged) {
-        mainWindow.showOutputModal("Sorry!.", "You haven't changed anything to update.");
-        return;
-    }
-
-    // set id of the newEntry object
-    newEntryObj.id = tempData.selectedEntry.id;
-
-    // send put reqeust to update data
-    const response = await Request.send(`${tempData.mainEndPoint}/${newEntryObj.id}`, "PUT", { data: newEntryObj });
-
-    // show output modal based on response
-    if (response.status) {
-        mainWindow.showOutputModal("Success!", response.msg);
-        // reset selected entry
-        tempData.selectedEntry = undefined;
-        reloadModule();
-    }
-}
-
-// delete entry from the database
-const deleteEntry = async (id = mainTable.selectedEntryId) => {
-    const confirmation = window.confirm("Do you really need to delete this entry?");
-
-    if (confirmation) {
-        const response = await Request.send(`${tempData.mainEndPoint}/${id}`, "DELETE");
-        if (response.status) {
-            mainWindow.showOutputModal("Success!", response.msg);
-            tempData.selectedEntry = undefined
-            reloadModule();
-        }
-    }
-}
-
-const setFormButtionsVisibility = (action) => {
-    let permission = tempData.permission;
-
-    switch (action) {
-        case "edit":
-            $("#btnFmAdd").hide();
-            if (permission[2] !== 0) $("#btnFmUpdate").show();
-            if (permission[3] !== 0) $("#btnFmDelete").show();
-            $("#btnFmReset").show();
-            break;
-
-        case "add":
-            if (permission[0] !== 0) $("#btnFmAdd").show();
-            $("#btnFmUpdate").hide();
-            $("#btnFmDelete").hide();
-            $("#btnFmReset").show();
-            break;
-    }
+    $("#attendanceDetails").fadeIn();
 }
 
 // reset form
