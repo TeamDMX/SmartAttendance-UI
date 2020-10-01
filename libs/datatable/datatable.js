@@ -194,7 +194,7 @@ class DataTable {
     let tableHTML = $("<div>").append($(`#${this.parentId}-dt-table`).clone()).html();
 
     // create new window and print the table
-    const stylesheet = "http://localhost:3000/lib/bootstrap/css/bootstrap.min.css";
+    const stylesheet = "/lib/bootstrap/css/bootstrap.min.css";
     const win = window.open("", "Print", "width=500,height=300");
     win.document.write(`<html><head><link rel="stylesheet" href="${stylesheet}"></head><body>${tableHTML}</body></html>`);
     setTimeout(() => {

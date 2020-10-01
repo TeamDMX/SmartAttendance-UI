@@ -13,6 +13,7 @@
 
   <title> Smart Attendance</title>
 </head>
+
 <body class="darkbg">
   <!--Navbar starts here-->
 
@@ -149,7 +150,7 @@
 
     $(document).ready(() => {
       // get profile using fetch api
-      fetch("http://localhost:3000/api/profile").then(res => {
+      fetch("/api/profile").then(res => {
         return res.json();
 
       }).then(response => {
@@ -210,7 +211,7 @@
 
     // logout from the system
     const logOut = () => {
-      fetch("http://localhost:3000/api/logOut").then(res => {
+      fetch("/api/logOut").then(res => {
         return res.json();
       }).then(data => {
         if (data.status) {

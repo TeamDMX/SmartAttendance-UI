@@ -5,7 +5,7 @@ class FormUtil {
 
         // get value of element id
         let value = $(selector).val();
-        
+
         // convert arrays to strings before checking
         if (Array.isArray(value)) {
             value = value.toString();
@@ -34,7 +34,7 @@ class FormUtil {
     }
 
     static enableRealtimeValidation(validationInfo) {
-        
+
         // provide freedback when user interact with form elements
         validationInfo.forEach(vi => {
             $(`#${vi.attribute}`).on("keyup change", () => {
@@ -59,7 +59,7 @@ class FormUtil {
                 if (($(el).is("input") || $(el).is("textarea")) && $(el).val().trim() == "") {
                     try {
                         $(el).val("Not Provided.");
-                    } catch {}
+                    } catch { }
                 }
             });
 
@@ -80,7 +80,7 @@ class FormUtil {
                 if (($(el).is("input") || $(el).is("textarea")) && $(el).val().trim() == "Not Provided.") {
                     try {
                         $(el).val("");
-                    } catch {}
+                    } catch { }
                 }
             });
 
@@ -169,7 +169,7 @@ class Request {
             const options = {
                 type: method,
                 contentType: "application/json; charset=utf-8",
-                url: `http://localhost:3000${path}`,
+                url: `${path}`,
                 data: data,
                 dataType: "json"
             }
