@@ -1,183 +1,215 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
 
-<head>
+		<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css" />
+		<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css" />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Smart Attendance</title>
+	</head>
 
+	<body class="darkbg">
+		<div class="container rowpadding" style="margin-top: 100px">
+			<div class="row dash-card-margin">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-LECTURER_COURSE"
+					onclick="loadRoute('lecturer_course');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa fa-book fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">
+										&nbsp;My Lectures
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-  <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
-  <link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-COURSE"
+					onclick="loadRoute('course');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-language fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">Courses</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-  <title> Smart Attendance</title>
-</head>
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-LECTURE"
+					onclick="loadRoute('lecture');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-university fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">
+										&nbsp;&nbsp;Lectures
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-LECTURER"
+					onclick="loadRoute('lecturer');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-user-md fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">Lecturers</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-<body class="darkbg">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-LECTURE_HALL"
+					onclick="loadRoute('lecture_hall');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-building fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">
+										Lecture Halls
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-  <div class="container rowpadding" style="margin-top: 100px;">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-STUDENT"
+					onclick="loadRoute('student');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-users fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">
+										&nbsp;&nbsp;Students
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <div class="row dash-card-margin">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-USER"
+					onclick="loadRoute('user');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-user fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">Users</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-      <div class="col-md-4 mt-3 MODULE MODULE-LECTURER_COURSE" onclick="loadRoute('lecturer_course');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-PRIVILEGE"
+					onclick="loadRoute('privilege');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-lock fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">Privileges</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-          <div class="card-body">
+				<div
+					class="col-md-4 mt-3 MODULE MODULE-ATTENDANCE"
+					onclick="loadRoute('attendance');"
+				>
+					<div
+						class="card activebg textyellow shadow dash-card-margin cardeffects"
+					>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-3">
+									<i class="fa fa-lock fa-5x" aria-hidden="true"></i>
+								</div>
+								<div class="col-9 justify-content-center align-self-center">
+									<h5 class="display-4 text-center selectcvard">Attendance</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="row">
-              <div class="col-3"><i class="fa fa fa-book fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard "> &nbsp;My Lectures</h5>
-              </div>
+		<script src="../../libs/jquery/jquery.js"></script>
+		<script src="../../libs/popper/popper.js"></script>
+		<script src="../../libs/bootstrap/js/bootstrap.js"></script>
 
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-COURSE" onclick="loadRoute('course');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-language fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard">Courses</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-LECTURE" onclick="loadRoute('lecture');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-university fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center  selectcvard"> &nbsp;&nbsp;Lectures</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 mt-3 MODULE MODULE-LECTURER" onclick="loadRoute('lecturer');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-user-md fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4  text-center selectcvard">Lecturers</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-LECTURE_HALL" onclick="loadRoute('lecture_hall');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-building fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard">Lecture Halls</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-STUDENT" onclick="loadRoute('student');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-users fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard"> &nbsp;&nbsp;Students</h5>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-USER" onclick="loadRoute('user');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-user fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard">Users</h5>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-PRIVILEGE" onclick="loadRoute('privilege');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-lock fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard">Privileges</h5>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 mt-3 MODULE MODULE-ATTENDANCE" onclick="loadRoute('attendance');">
-        <div class="card activebg textyellow shadow dash-card-margin cardeffects">
-
-          <div class="card-body">
-
-            <div class="row">
-              <div class="col-3"><i class="fa fa-lock fa-5x " aria-hidden="true"></i></div>
-              <div class="col-9 justify-content-center align-self-center">
-                <h5 class="display-4 text-center selectcvard">Attendance</h5>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script src="../../libs/jquery/jquery.js"></script>
-  <script src="../../libs/popper/popper.js"></script>
-  <script src="../../libs/bootstrap/js/bootstrap.js"></script>
-
-  <script src="./dashboard.js"></script>
-</body>
-
+		<script src="./dashboard.js"></script>
+	</body>
 </html>

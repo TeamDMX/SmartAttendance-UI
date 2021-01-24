@@ -1,103 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
 
-<head>
+		<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css" />
+		<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="../../libs/datatable/datatable.css" />
+		<title>Manage Courses</title>
+	</head>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-	<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
-	<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
-	<link rel="stylesheet" href="../../libs/datatable/datatable.css">
-	<title>Manage Courses</title>
-</head>
-
-<body class="darkbg">
-	<div class="container containerpadding">
-		<div class="row rowpadding">
-
-			<div class="col-sm">
-				<div class="jumbotron  paddingJump activebg jumbotronpadding">
-					<ul class="nav nav-tabs">
-						<li class="active "><a data-toggle="tab" class="btn btn-info customtab active" href="#tabTable"
-								id="tabTableTitle">Courses</a>
-						</li>
-						<li><a id="tabAdd" data-toggle="tab" href="#tabForm" class="btn btn-info customtab"
-								id="tabFormTitle">Add
-								New</a></li>
-						<li><a id="tabUpdate" style="display: none;" data-toggle="tab"
-								class="btn btn-info customtab">Update
-								Entry</a></li>
-
-					</ul>
-					<div class="tab-content">
-
-						<div id="tabTable" class="container tab-pane active" style="padding: 0;">
-							<div id="mainTableHolder" style="margin-top:30px">
-
+	<body class="darkbg">
+		<div class="container containerpadding">
+			<div class="row rowpadding">
+				<div class="col-sm">
+					<div class="jumbotron paddingJump activebg jumbotronpadding">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a
+									data-toggle="tab"
+									class="btn btn-info customtab active"
+									href="#tabTable"
+									id="tabTableTitle"
+									>Courses</a
+								>
+							</li>
+							<li>
+								<a
+									id="tabAdd"
+									data-toggle="tab"
+									href="#tabForm"
+									class="btn btn-info customtab"
+									id="tabFormTitle"
+									>Add New</a
+								>
+							</li>
+							<li>
+								<a
+									id="tabUpdate"
+									style="display: none"
+									data-toggle="tab"
+									class="btn btn-info customtab"
+									>Update Entry</a
+								>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div
+								id="tabTable"
+								class="container tab-pane active"
+								style="padding: 0"
+							>
+								<div id="mainTableHolder" style="margin-top: 30px"></div>
 							</div>
-						</div>
 
-						<div id="tabForm" class="container tab-pane fade lowmargin">
+							<div id="tabForm" class="container tab-pane fade lowmargin">
+								<form id="mainForm" style="margin-top: 40px">
+									<div class="form-group">
+										<label class="textWhite">Code: </label>
+										<input
+											type="text"
+											class="form-control"
+											id="code"
+											name="code"
+										/>
+									</div>
 
+									<div class="form-group">
+										<label class="textWhite">Name: </label>
+										<input
+											type="text"
+											class="form-control"
+											id="name"
+											name="name"
+										/>
+									</div>
 
-							<form id="mainForm" style="margin-top: 40px;">
+									<div class="text-right">
+										<div class="row">
+											<div class="col-sm">
+												<button
+													id="btnFmAdd"
+													type="button"
+													class="btn btnwidth marginbtn bgyellow1"
+												>
+													<i class="fa fa-check"></i>&nbsp; Add
+												</button>
+											</div>
 
-								<div class="form-group">
-									<label class="textWhite">Code: </label>
-									<input type="text" class="form-control" id="code" name="code">
-								</div>
+											<div class="col-sm">
+												<button
+													id="btnFmUpdate"
+													type="button"
+													class="btn btnwidth marginbtn btn-info"
+												>
+													<i class="fa fa-pencil-square-o"></i>&nbsp; Update
+												</button>
+											</div>
 
-								<div class="form-group">
-									<label class="textWhite">Name: </label>
-									<input type="text" class="form-control" id="name" name="name">
-								</div>
-
-								<div class="text-right">
-									<div class="row">
-										<div class="col-sm">
-											<button id="btnFmAdd" type="button"
-												class="btn btnwidth marginbtn bgyellow1">
-												<i class="fa fa-check"></i>&nbsp; Add
-											</button>
-										</div>
-
-										<div class="col-sm">
-											<button id="btnFmUpdate" type="button"
-												class="btn btnwidth marginbtn btn-info">
-												<i class="fa fa-pencil-square-o"></i>&nbsp; Update
-											</button>
-										</div>
-
-										<div class="col-sm">
-											<button id="btnFmDelete" type="button"
-												class="btn btnwidth marginbtn btn-danger">
-												<i class="fa fa-trash-o"></i>&nbsp; Delete
-											</button>
+											<div class="col-sm">
+												<button
+													id="btnFmDelete"
+													type="button"
+													class="btn btnwidth marginbtn btn-danger"
+												>
+													<i class="fa fa-trash-o"></i>&nbsp; Delete
+												</button>
+											</div>
 										</div>
 									</div>
-								</div>
-
-							</form>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 
-	</div>
+		<script src="../../libs/jquery/jquery.js"></script>
+		<script src="../../libs/popper/popper.js"></script>
+		<script src="../../libs/bootstrap/js/bootstrap.js"></script>
+		<script src="../../assets/js/common.js"></script>
 
-	<script src="../../libs/jquery/jquery.js"></script>
-	<script src="../../libs/popper/popper.js"></script>
-	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
-	<script src="../../assets/js/common.js"></script>
-
-	<script src="../../libs/datatable/datatable.js"></script>
-	<script src="./course.js"></script>
-</body>
-
+		<script src="../../libs/datatable/datatable.js"></script>
+		<script src="./course.js"></script>
+	</body>
 </html>

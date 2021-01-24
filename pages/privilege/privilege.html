@@ -1,79 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>TwoElephantFireworks - Privilages</title>
+		<link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../assets/css/theme.css" type="text/css" />
+		<link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>TwoElephantFireworks - Privilages</title>
-  <link rel="stylesheet" href="../../libs/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../assets/css/theme.css" type="text/css">
-  <link rel="stylesheet" href="../../libs/fontawesome/css/font-awesome.css">
-</head>
+	<body>
+		<div class="container-fluid" style="margin-top: 100px">
+			<form>
+				<div class="form-group">
+					<label for="roleId">Role: <span class="required">*</span></label>
+					<select name="roleId" id="roleId" class="form-control"></select>
+				</div>
 
-<body>
-  <div class="container-fluid" style="margin-top: 100px;">
+				<div class="row">
+					<div class="col-10">
+						<div class="form-group">
+							<label for="moduleId">Module: </label>
+							<select
+								name="moduleId"
+								id="moduleId"
+								class="form-control"
+							></select>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="form-group">
+							<label style="color: white">.</label>
+							<span class="btn btn-primary btn-block" id="btnModuleAdd"
+								>Add</span
+							>
+						</div>
+					</div>
+				</div>
 
-    <form>
-      <div class="form-group">
-        <label for="roleId">Role: <span class="required">*</span></label>
-        <select name="roleId" id="roleId" class="form-control">
-          <option value="1">Role A</option>
-          <option value="2">Role B</option>
-          <option value="3">Role C</option>
-        </select>
-      </div>
+				<div class="form-group">
+					<label for="moduleTable"
+						>Permissions: <span class="required">*</span></label
+					>
+					<table id="moduleTable" class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Module</th>
+								<th>Read</th>
+								<th>Add</th>
+								<th>Modify</th>
+								<th>Remove</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 
-      <div class="row">
-        <div class="col-10">
-          <div class="form-group">
-            <label for="moduleId">Module: </label>
-            <select name="moduleId" id="moduleId" class="form-control">
-              <option value="1">Role A</option>
-              <option value="2">Role B</option>
-              <option value="3">Role C</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-group">
-            <label style="color: white;">.</label>
-            <span class="btn btn-primary btn-block" id="btnModuleAdd">Add</span>
-          </div>
-        </div>
-      </div>
+				<button id="btnFmUpdate" class="btn btn-warning">
+					Update Role Privileges
+				</button>
+			</form>
+		</div>
 
-      <div class="form-group">
-        <label for="moduleTable">Permissions: <span class="required">*</span></label>
-        <table id="moduleTable" class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Module</th>
-              <th>Read</th>
-              <th>Add</th>
-              <th>Modify</th>
-              <th>Remove</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
+		<!-- libs -->
+		<script src="../../libs/jquery/jquery.js"></script>
+		<script src="../../libs/popper/popper.js"></script>
+		<script src="../../libs/bootstrap/js/bootstrap.js"></script>
+		<script src="../../assets/js/common.js"></script>
 
-          </tbody>
-        </table>
-      </div>
-
-      <button id="btnFmUpdate" class="btn btn-warning">Update Role Privileges</button>
-
-    </form>
-
-  </div>
-
-  <!-- libs -->
-	<script src="../../libs/jquery/jquery.js"></script>
-	<script src="../../libs/popper/popper.js"></script>
-	<script src="../../libs/bootstrap/js/bootstrap.js"></script>
-	<script src="../../assets/js/common.js"></script>
-
-  <!-- main js -->
-  <script src="privilege.js"></script>
-</body>
-
+		<!-- main js -->
+		<script src="privilege.js"></script>
+	</body>
 </html>
