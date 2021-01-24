@@ -1,51 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
 
-<head>
+		<link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="./assets/css/theme.css" type="text/css" />
+		<link rel="stylesheet" href="./libs/fontawesome/css/font-awesome.css" />
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Smart Attendance</title>
+	</head>
 
+	<body class="darkbg">
+		<!--Navbar starts here-->
 
-  <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="./assets/css/theme.css" type="text/css">
-  <link rel="stylesheet" href="./libs/fontawesome/css/font-awesome.css">
+		<nav class="navbar navbar-expand-lg navbar-dark customnav fixed-top">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-  <title> Smart Attendance</title>
-</head>
-
-<body class="darkbg">
-  <!--Navbar starts here-->
-
-  <nav class="navbar navbar-expand-lg navbar-dark customnav fixed-top">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <!--Activated-->
-          <a class="nav-link" href=""><b onclick="loadRoute('dashboard');">Smart Attendance</b> | <span
-              id="lblNavTitle"></span></a>
-          <!-- Replace your action text here-->
-        </li>
-
-
-
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-
-        <!--  <a class="nav-link" href="#" style="color: beige;">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<!--Activated-->
+						<a class="nav-link" href="#">
+							<b onclick="loadRoute('dashboard');">Smart Attendance</b> |
+							<span id="lblNavTitle"></span
+						></a>
+						<!-- Replace your action text here-->
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<!--  <a class="nav-link" href="#" style="color: beige;">
           <i class="fa fa-bell">
             <span class="badge badge-danger">11</span>
           </i> -->
 
-
-        <!--notification box starts here-->
-        <li class="dropdown">
+					<!--notification box starts here-->
+					<!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
             aria-expanded="false">
             <i class="fa fa-bell">
@@ -86,181 +89,208 @@
                 </div>
 
           </ul>
-        </li>
-        <!--notification box ends here-->
-        <a class="nav-link" href="#" style="color: beige;" data-toggle="modal" data-target="#options">
-          <a class="navbar-brand" href="#" data-toggle="modal" data-target="#options">
-            <img src="./assets/images/user.svg" width="30" data-toggle="modal" data-target="#options" height="30" alt=""
-              loading="lazy"> &nbsp; <span id="lblNavUsername"></span>
-          </a>
+        </li> -->
+					<!--notification box ends here-->
+					<a
+						class="nav-link"
+						href="#"
+						style="color: beige"
+						data-toggle="modal"
+						data-target="#options"
+					>
+						<a
+							class="navbar-brand"
+							href="#"
+							data-toggle="modal"
+							data-target="#options"
+						>
+							<img
+								src="./assets/images/user.svg"
+								width="30"
+								data-toggle="modal"
+								data-target="#options"
+								height="30"
+								alt=""
+								loading="lazy"
+							/>
+							&nbsp; <span id="lblNavUsername"></span>
+						</a>
+					</a>
+				</form>
+			</div>
+		</nav>
+		<!--end of navbar-->
 
-        </a>
-      </form>
+		<!--output model-->
 
-    </div>
-  </nav>
-  <!--end of navbar-->
+		<div class="modal fade" id="modalOutput">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							&times;
+						</button>
+					</div>
 
-  <!--output model-->
+					<!-- Modal body -->
+					<div class="modal-body" id="modalOutputBody"></div>
 
-  <div class="modal fade" id="modalOutput">
-    <div class="modal-dialog">
-      <div class="modal-content">
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title" id="modalOutputTitle">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+		<!--output model ends here-->
 
-        <!-- Modal body -->
-        <div class="modal-body" id="modalOutputBody">
+		<div class="container-fluid" style="padding-right: 0; padding-left: 0">
+			<div class="iframeMainHolder">
+				<iframe
+					id="iframeMain"
+					class="iframe-full-size"
+					src=""
+					frameborder="0"
+				></iframe>
+			</div>
+		</div>
 
-        </div>
+		<script src="./libs/jquery/jquery.js"></script>
+		<script src="./libs/popper/popper.js"></script>
+		<script src="./libs/bootstrap/js/bootstrap.js"></script>
+		<script src="./assets/js/router.js"></script>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!--output model ends here-->
-
-  <div class="container-fluid" style="padding-right: 0; padding-left: 0;">
-    <div class="iframeMainHolder">
-      <iframe id="iframeMain" class="iframe-full-size" src="" frameborder="0"></iframe>
-    </div>
-  </div>
-
-  <script src="./libs/jquery/jquery.js"></script>
-  <script src="./libs/popper/popper.js"></script>
-  <script src="./libs/bootstrap/js/bootstrap.js"></script>
-  <script src="./assets/js/router.js"></script>
-
-  <script>
-    /*-------------------------------------------------------------------------------------------------------
+		<script>
+			/*-------------------------------------------------------------------------------------------------------
                                              Window Data
    -------------------------------------------------------------------------------------------------------*/
-    // privileges will have {module name: 0101} style 
-    window.tempData = { profile: null, privileges: {} };
+			// privileges will have {module name: 0101} style
+			window.tempData = { profile: null, privileges: {} };
 
-    $(document).ready(() => {
-      // get profile using fetch api
-      fetch("/api/profile").then(res => {
-        return res.json();
+			$(document).ready(() => {
+				$(".nav-link").on("click", (e) => e.preventDefault());
 
-      }).then(response => {
-        if (!response.status) {
-          showOutputModal("Error", "Unable to retrive user profile!.");
-          window.location = "./login.html";
-          return;
-        }
+				// get profile using fetch api
+				fetch("/api/profile")
+					.then((res) => {
+						return res.json();
+					})
+					.then((response) => {
+						if (!response.status) {
+							showOutputModal("Error", "Unable to retrive user profile!.");
+							window.location = "./login.html";
+							return;
+						}
 
-        // get data from the response
-        const data = response.data;
+						// get data from the response
+						const data = response.data;
 
-        // save profile on temp data
-        tempData.profile = data;
+						// save profile on temp data
+						tempData.profile = data;
 
-        // update ui
+						// update ui
 
-        // get username from email
-        $("#lblNavUsername").text(data.email.split("@")[0].trim());
+						// get username from email
+						$("#lblNavUsername").text(data.email.split("@")[0].trim());
 
-        // hide all menu items
+						// hide all menu items
 
+						// build privileges from the response and update UI
+						Object.keys(data.privileges).forEach((moduleName) => {
+							const permission = data.privileges[moduleName];
+							tempData.privileges[moduleName] = permission;
 
-        // build privileges from the response and update UI
-        Object.keys(data.privileges).forEach(moduleName => {
-          const permission = data.privileges[moduleName];
-          tempData.privileges[moduleName] = permission;
+							// update ui
+						});
 
-          // update ui
-        });
+						// check window location and load correct page (route)
+						const locationParts = window.location.href.split("?page=");
+						let routeName = locationParts[locationParts.length - 1].trim();
 
+						// if route name is not given in the url, load dhasboard
+						if (!routeName || locationParts.length == 1)
+							routeName = "dashboard";
 
-        // check window location and load correct page (route)
-        const locationParts = window.location.href.split("?page=");
-        let routeName = locationParts[locationParts.length - 1].trim();
+						// load route
+						if (routeName !== "") {
+							loadRoute(routeName);
+						}
+					})
+					.catch((e) => {
+						console.log(e);
+						showOutputModal(
+							"Error",
+							"Something went wrong while reading your profile!."
+						);
+						return;
+					});
+			});
 
-        // if route name is not given in the url, load dhasboard
-        if (!routeName || locationParts.length == 1) routeName = "dashboard";
+			// when iframe is load
+			$("#iframeMain").on("load", () => {
+				// check logged in
+				updateRouteInfo();
+			});
 
-        // load route
-        if (routeName !== "") {
-          loadRoute(routeName);
-        }
+			// logout from the system
+			const logOut = () => {
+				fetch("/api/logOut")
+					.then((res) => {
+						return res.json();
+					})
+					.then((data) => {
+						if (data.status) {
+							loadRoute("noauth");
+						} else {
+							showOutputModal("Error!.", "You need to be logged in first!.");
+						}
+					})
+					.catch((e) => {
+						showOutputModal("Error!.", "Unable to send a logout request.");
+					});
+			};
 
-      }).catch(e => {
-        console.log(e);
-        showOutputModal("Error", "Something went wrong while reading your profile!.");
-        return;
-      });
-    });
+			// controls modal for showing various outputs
+			const showOutputModal = (title, body) => {
+				$("#modalOutputTitle").text(title);
+				$("#modalOutputBody").html("Unknown");
+				$("#modalOutputBody").html(body);
+				$("#modalOutput").modal();
+			};
 
+			// controls toast for showing various outputs
+			const showOutputToast = (title, body, type = "success") => {
+				$.toast({
+					heading: title,
+					text: body,
+					hideAfter: 4000,
+					position: "bottom-right",
+					icon: type,
+					stack: false,
+				});
+			};
 
-    // when iframe is load
-    $("#iframeMain").on("load", () => {
-      // check logged in
-      updateRouteInfo();
-    });
-
-    // logout from the system
-    const logOut = () => {
-      fetch("/api/logOut").then(res => {
-        return res.json();
-      }).then(data => {
-        if (data.status) {
-          loadRoute("noauth");
-        } else {
-          showOutputModal("Error!.", "You need to be logged in first!.");
-        }
-      }).catch(e => {
-        showOutputModal("Error!.", "Unable to send a logout request.");
-      });
-    }
-
-    // controls modal for showing various outputs
-    const showOutputModal = (title, body) => {
-      $("#modalOutputTitle").text(title);
-      $("#modalOutputBody").html("Unknown");
-      $("#modalOutputBody").html(body);
-      $("#modalOutput").modal();
-    }
-
-    // controls toast for showing various outputs
-    const showOutputToast = (title, body, type = "success") => {
-      $.toast({
-        heading: title,
-        text: body,
-        hideAfter: 4000,
-        position: "bottom-right",
-        icon: type,
-        stack: false,
-      })
-    }
-
-    // show confirmation modal
-    const showConfirmModal = (title, body) => {
-      return new Promise((resolve, reject) => {
-        $("#modalConfirmTitle").text(title);
-        $("#modalConfirmBody").html("Unknown");
-        $("#modalConfirmBody").html(body);
-        $("#modalConfirm").modal();
-        $("#btnModalYes").on("click", () => {
-          resolve(true);
-          $("#modalConfirm").modal("hide");
-        });
-        $("#btnModalNo").on("click", () => {
-          resolve(false);
-        });
-      });
-    }
-  </script>
-</body>
-
+			// show confirmation modal
+			const showConfirmModal = (title, body) => {
+				return new Promise((resolve, reject) => {
+					$("#modalConfirmTitle").text(title);
+					$("#modalConfirmBody").html("Unknown");
+					$("#modalConfirmBody").html(body);
+					$("#modalConfirm").modal();
+					$("#btnModalYes").on("click", () => {
+						resolve(true);
+						$("#modalConfirm").modal("hide");
+					});
+					$("#btnModalNo").on("click", () => {
+						resolve(false);
+					});
+				});
+			};
+		</script>
+	</body>
 </html>
